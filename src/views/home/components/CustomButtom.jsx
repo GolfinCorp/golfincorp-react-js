@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const CustomButtom = () => {
   let buttonAnimation = {
     spring: {
-      y: [10, -10],
+      y: [5, -5],
       transition: {
         yoyo: Infinity,
         duration: 1.5,

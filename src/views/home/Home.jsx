@@ -9,7 +9,12 @@ import HeroImg from "./components/HeroImg";
 import CustomButtom from "./components/CustomButtom";
 const Home = () => {
   return (
-    <Container bgColor={"#F0F0F0"} h={"100vh"} position={"relative"}>
+    <Container
+      bgColor={"#F0F0F0"}
+      h={"100vh"}
+      maxW={{ base: "90vh", md: "100vh" }}
+      position={"relative"}
+    >
       <Box>
         <HomeHeader />
       </Box>
