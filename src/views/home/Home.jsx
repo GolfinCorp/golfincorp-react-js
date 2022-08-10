@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <Container
       bgColor={"#F0F0F0"}
-      h={"100vh"}
+      h={{ base: "96vh", md: "100vh" }}
       maxW={{ base: "90vh", md: "100vh" }}
       position={"relative"}
     >
