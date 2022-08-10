@@ -408,6 +408,13 @@
   dependencies:
     "@chakra-ui/utils" "2.0.6"
 
+"@chakra-ui/icons@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.6.tgz#de60b0345d4a09037c275eb9e638e5ccf1496489"
+  integrity sha512-5NWrRhWvVSjGJIS4aJGJ6z2PVb/XDIpGMCqsS0aLhrVOkIHp1fv8hvXylTiR/nShRgZU9td/XyCBXJKHoE4BAA==
+  dependencies:
+    "@chakra-ui/icon" "3.0.6"
+
 "@chakra-ui/image@2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.0.7.tgz#07a101d0fb604a0020abda77adefa3438cff9b15"
@@ -924,6 +931,16 @@
   version "0.14.53"
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.53.tgz#251b4cd6760fadb4d68a05815e6dc5e432d69cd6"
   integrity sha512-W2dAL6Bnyn4xa/QRSU3ilIK4EzD5wgYXKXJiS1HDF5vU3675qc2bvFyLwbUcdmssDveyndy7FbitrCoiV/eMLg==
+
+"@fontsource/bebas-neue@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/bebas-neue/-/bebas-neue-4.5.8.tgz#dcac807b13fed842cdb4161c13c249ff2d7c4ef1"
+  integrity sha512-kgNZf/DbDyybH8LcJ28xg7Po3N4eWdUJnh0hsvpcLV8bYvFG1oGl01saQzCJwWbviayi/0EZEY0t6cSKt9Ey1g==
+
+"@fontsource/dm-sans@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/dm-sans/-/dm-sans-4.5.8.tgz#232296c97ff22798866b573246872406395e0738"
+  integrity sha512-VIZJhlqt7wEc/NxBTrqR23pzhWMN88k5rScxOKpwKOTwXXUbQLS0kFlbGEjaazy3D5YD/20jqAgl+/nCRhlHDA==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"

@@ -1,6 +1,14 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const baseTheme = extendTheme({
+  styles: {
+    global: {
+      body: {
+        maxW: "100vw",
+        overflowX: "hidden",
+      },
+    },
+  },
   colors: {
     brand: {
       primary: "#779D18",
@@ -10,6 +18,10 @@ export const baseTheme = extendTheme({
       white: "#fafafa",
       100: "#DDDDDD",
     },
+  },
+  fonts: {
+    heading: `'Bebas Neue', sans-serif`,
+    body: `'DM Sans', sans-serif`,
   },
   components: {
     Button: {
@@ -23,12 +35,14 @@ export const baseTheme = extendTheme({
         primary: {
           backgroundColor: "brand.primary",
           borderRadius: "6px",
+          fontWeight: "normal",
           color: "brand.white",
         },
         outlined: {
           bg: "transparent",
           border: "1px solid",
           borderColor: "brand.dark",
+          fontWeight: "normal",
           _hover: {
             backgroundColor: "brand.dark",
             color: "brand.white",
@@ -40,6 +54,7 @@ export const baseTheme = extendTheme({
           _hover: {
             backgroundColor: "brand.dark",
             color: "brand.white",
+            cursor: "pointer",
           },
         },
       },
