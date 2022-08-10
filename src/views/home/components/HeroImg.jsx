@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Box, Img } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 // imgs
 import GolfText from "../../../assets/imgs/golf.png";
 import circle from "../../../assets/imgs/circle.png";
@@ -8,7 +9,21 @@ import TWoods from "../../../assets/imgs/twoods.png";
 const HeroImg = () => {
   return (
     <>
-      <Box position="absolute" top="0" h="100vh" w="100vw" left="0">
+      <Box
+        position="absolute"
+        top="0"
+        h="100vh"
+        w="100vw"
+        left="0"
+        as={motion.div}
+        animate={{
+          y: ["0px", "20px", "0px"],
+          opacity: ["0", "0", "1"],
+
+          transition: "1s",
+          x: "0px",
+        }}
+      >
         <Flex h="100%" align={"center"} justify="center">
           <Img src={GolfText} w="90%" maxW="600px" />
         </Flex>
@@ -24,6 +39,14 @@ const HeroImg = () => {
         <Img src={circle} w="80%" maxW="625px" mx="auto" />
       </Flex>
       <Flex
+        as={motion.div}
+        animate={{
+          y: ["0px", "20px", "0px"],
+          opacity: ["0", "0", "1"],
+
+          transition: "1s",
+          x: "0px",
+        }}
         position="absolute"
         w="100vw"
         right={{ base: "10%", lg: "5%" }}

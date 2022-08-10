@@ -1,8 +1,17 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, keyframes } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
+import { motion } from "framer-motion";
 const CustomButtom = () => {
+  let buttonAnimation = {
+    spring: {
+      y: [10, -10],
+      transition: {
+        yoyo: Infinity,
+        duration: 1.5,
+      },
+    },
+  };
   return (
     <Flex
       position="absolute"
@@ -11,10 +20,24 @@ const CustomButtom = () => {
       bottom={"-30px"}
       justify="center"
       align={"center"}
-      zIndex={10}
+      zIndex={5}
+
+      // transition={{
+      //   duration: 3,
+      //   ease: "easeInOut",
+      //   repeat: Infinity,
+      //   repeatType: "yoyo",
+      // }}
+      // animate={{
+      //   y: ["0px", "10px", "0px", "10px", "0px"],
+      // }}
     >
       <Flex
+        as={motion.div}
         w="60px"
+        initial={{ rotate: 45 }}
+        variants={buttonAnimation}
+        animate={buttonAnimation.spring}
         h="60px"
         border={"4px solid"}
         borderColor="#F0F0F0"

@@ -42,6 +42,7 @@ export const baseTheme = extendTheme({
           bg: "transparent",
           border: "1px solid",
           borderColor: "brand.dark",
+          cursor: "pointer",
           fontWeight: "normal",
           _hover: {
             backgroundColor: "brand.dark",
