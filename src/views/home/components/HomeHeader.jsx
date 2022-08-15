@@ -1,6 +1,17 @@
 import React from "react";
-import { Flex, Button, Heading, Text, Box } from "@chakra-ui/react";
-import { Logo } from "../../../components/atoms/icons";
+import {
+  Flex,
+  Button,
+  Box,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text,
+} from "@chakra-ui/react";
+import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
+
+import { Logo, MinLogo } from "../../../components/atoms/icons";
 import { motion } from "framer-motion";
 const HomeHeader = () => {
   return (
@@ -16,20 +27,56 @@ const HomeHeader = () => {
         x: "0px",
       }}
     >
-      <Flex alignItems={"center"} justifyContent="space-between">
+      {/* Desktop */}
+      <Flex
+        alignItems={"center"}
+        justifyContent="space-between"
+        display={{ base: "none", md: "flex" }}
+      >
         <Logo w="131px" h="55px" _hover={{ cursor: "pointer" }} />
         <Button variant="outlined">Iniciar Sesión</Button>
       </Flex>
-      <Flex mt={{ base: "20vh", sm: "15vh", md: "10vh" }} justify="center">
-        <Heading
-          as={"h2"}
-          fontSize="24px"
-          fontWeight={"600"}
-          display="flex"
-          gap="2"
-        >
-          <Text color="brand.primary">RESERVA</Text> <Text>AHORA</Text>
-        </Heading>
+      {/* Mobile */}
+      <Flex
+        alignItems={"center"}
+        justifyContent="space-between"
+        display={{ base: "flex", md: "none" }}
+      >
+        <MinLogo w="55px" _hover={{ cursor: "pointer" }} />
+        <Menu>
+          <MenuButton
+            as={Flex}
+            py="10px"
+            px="14px"
+            borderRadius={"6px"}
+            border="1px solid"
+            borderColor="brand.dark"
+            _hover={{
+              bgColor: "brand.dark",
+              color: "brand.white",
+              cursor: "pointer",
+            }}
+          >
+            <HamburgerIcon />
+          </MenuButton>
+          <MenuList m="0" p="0">
+            <MenuItem
+              _hover={{ backgroundColor: "transparent" }}
+              _focus={{ backgroundColor: "transparent" }}
+            >
+              <Box
+                p={2}
+                w="100%"
+                borderRadius="6px"
+                _hover={{ backgroundColor: "brand.dark", color: "white" }}
+              >
+                <Text>Inicia Sesión</Text>
+              </Box>
+            </MenuItem>
+            <MenuItem>Registra tu club</MenuItem>
+            <MenuItem>Sobre nosotros</MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Box>
   );
