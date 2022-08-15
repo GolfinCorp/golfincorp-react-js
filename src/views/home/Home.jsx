@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Skeleton, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Skeleton, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 // General Components
 import Container from "../../components/atoms/Container";
 
@@ -17,23 +17,27 @@ const Home = () => {
     x: "0px",
   };
   return (
-    <Container bgColor={"#F0F0F0"} h="100vh" position={"relative"}>
-      <HomeHeader />
-      <HeroImg entryAnimation={entryAnimation} />
-      <CustomButtom />
-      <SimpleGrid
-        position="relative"
-        top={{ base: "80vh", md: "100vh" }}
-        columns={2}
-        gap="2"
-        mb
-      >
-        <Skeleton w="100%" h={{ base: "20vh", md: "40vh" }} />
-        <Box>
-          <Text>This is my component</Text>
-        </Box>
-      </SimpleGrid>
-    </Container>
+    <>
+      <Container bgColor={"#F0F0F0"} minH="100vh" position="relative">
+        <HomeHeader />
+        <HeroImg entryAnimation={entryAnimation} />
+        <CustomButtom />
+      </Container>
+      <Container my="10vh">
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="2">
+          <Flex justify={"center"} align="center">
+            <Skeleton
+              w="100%"
+              h={{ base: "20vh", md: "40vh" }}
+              borderRadius="6px"
+            />
+          </Flex>
+          <Flex justify={"center"} align="center">
+            <Text>Proximamente...</Text>
+          </Flex>
+        </SimpleGrid>
+      </Container>
+    </>
   );
 };
 
