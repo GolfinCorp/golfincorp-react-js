@@ -90,5 +90,16 @@ export const baseTheme = extendTheme({
         },
       },
     },
+    Input: {
+      baseStyle: {
+        backgroundColor: "brand.primary",
+      },
+      variants: {
+        auth: {
+          borderColor: "brand.dark",
+          backgroundColor: "red",
+        },
+      },
+    },
   },
 });

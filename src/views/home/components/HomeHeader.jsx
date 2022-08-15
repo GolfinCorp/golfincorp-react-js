@@ -10,10 +10,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
-
+import { useNavigate } from "react-router-dom";
 import { Logo, MinLogo } from "../../../components/atoms/icons";
 import { motion } from "framer-motion";
 const HomeHeader = () => {
+  const navigate = useNavigate();
   return (
     <Box
       position="relative"
@@ -34,7 +35,9 @@ const HomeHeader = () => {
         display={{ base: "none", md: "flex" }}
       >
         <Logo w="131px" h="55px" _hover={{ cursor: "pointer" }} />
-        <Button variant="outlined">Iniciar Sesión</Button>
+        <Button variant="outlined" onClick={() => navigate("login")}>
+          Iniciar Sesión
+        </Button>
       </Flex>
       {/* Mobile */}
       <Flex
@@ -70,7 +73,7 @@ const HomeHeader = () => {
                 borderRadius="6px"
                 _hover={{ backgroundColor: "brand.dark", color: "white" }}
               >
-                <Text>Inicia Sesión</Text>
+                <Text onClick={() => navigate("/login")}>Inicia Sesión</Text>
               </Box>
             </MenuItem>
             <MenuItem>Registra tu club</MenuItem>

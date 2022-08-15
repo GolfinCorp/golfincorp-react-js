@@ -11,7 +11,7 @@ const HeroImg = ({ entryAnimation }) => {
   return (
     <>
       <Flex
-        mt={{ base: "20vh", sm: "15vh", md: "10vh" }}
+        mt={{ base: "20vh", sm: "15vh", md: "5vh" }}
         justify="center"
         as={motion.div}
         animate={entryAnimation}
@@ -36,7 +36,7 @@ const HeroImg = ({ entryAnimation }) => {
         animate={entryAnimation}
       >
         <Flex h="100%" align={"center"} justify="center">
-          <Img src={GolfText} w="90%" maxW="600px" />
+          <Img src={GolfText} w="90%" maxW={{ base: "400px", lg: "600px" }} />
         </Flex>
       </Box>
       <Flex
@@ -47,7 +47,12 @@ const HeroImg = ({ entryAnimation }) => {
         justify="center"
         align="center"
       >
-        <Img src={circle} w="80%" maxW="625px" mx="auto" />
+        <Img
+          src={circle}
+          w="80%"
+          maxW={{ base: "400px", lg: "600px" }}
+          mx="auto"
+        />
       </Flex>
       <Flex
         as={motion.div}
@@ -60,12 +65,17 @@ const HeroImg = ({ entryAnimation }) => {
         }}
         position="absolute"
         w="100vw"
-        right={{ base: "10%", lg: "5%" }}
+        right={{ base: "10%", md: "7%", lg: "5%" }}
         bottom={0}
         justify="center"
         align="center"
       >
-        <Img src={TWoods} objectFit="contain" mx="auto" />
+        <Img
+          src={TWoods}
+          objectFit="contain"
+          mx="auto"
+          maxW={{ base: "400px", lg: "600px" }}
+        />
       </Flex>
     </>
   );
