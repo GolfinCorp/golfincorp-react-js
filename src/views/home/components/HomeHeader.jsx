@@ -1,4 +1,5 @@
 import React from "react";
+// ? components
 import {
   Flex,
   Button,
@@ -6,15 +7,38 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  Text,
+  useToast,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import { Logo, MinLogo } from "../../../components/atoms/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
-const HomeHeader = () => {
-  const navigate = useNavigate();
+// ? local components
+import NavItems from "./NavItems";
+import { Logo, MinLogo } from "../../../components/atoms/icons";
+
+function HomeHeader() {
+  // * Hooks declaration
+  const toast = useToast();
+
+  // * State declaration
+
+  // * Variable declarations
+  const navItems = [
+    { name: "Inicia Sesión", route: "/login" },
+    { name: "Registra tu club", route: "/" },
+    { name: "Sobre nosotros", route: "/" },
+  ];
+
+  // * Event handlers
+  const handleClick = () => {
+    toast({
+      title: "En construcción",
+      status: "warning",
+      position: "top",
+    });
+  };
+
+  // * Initial Load
+
   return (
     <Box
       position="relative"
@@ -30,18 +54,18 @@ const HomeHeader = () => {
     >
       {/* Desktop */}
       <Flex
-        alignItems={"center"}
+        alignItems="center"
         justifyContent="space-between"
         display={{ base: "none", md: "flex" }}
       >
         <Logo w="131px" h="55px" _hover={{ cursor: "pointer" }} />
-        <Button variant="outlined" onClick={() => navigate("login")}>
+        <Button variant="outlined" onClick={handleClick}>
           Iniciar Sesión
         </Button>
       </Flex>
       {/* Mobile */}
       <Flex
-        alignItems={"center"}
+        alignItems="center"
         justifyContent="space-between"
         display={{ base: "flex", md: "none" }}
       >
@@ -51,7 +75,7 @@ const HomeHeader = () => {
             as={Flex}
             py="10px"
             px="14px"
-            borderRadius={"6px"}
+            borderRadius="6px"
             border="1px solid"
             borderColor="brand.dark"
             _hover={{
@@ -63,26 +87,18 @@ const HomeHeader = () => {
             <HamburgerIcon />
           </MenuButton>
           <MenuList m="0" p="0">
-            <MenuItem
-              _hover={{ backgroundColor: "transparent" }}
-              _focus={{ backgroundColor: "transparent" }}
-            >
-              <Box
-                p={2}
-                w="100%"
-                borderRadius="6px"
-                _hover={{ backgroundColor: "brand.dark", color: "white" }}
-              >
-                <Text onClick={() => navigate("/login")}>Inicia Sesión</Text>
-              </Box>
-            </MenuItem>
-            <MenuItem>Registra tu club</MenuItem>
-            <MenuItem>Sobre nosotros</MenuItem>
+            {navItems.map((item) => (
+              <NavItems
+                content={item}
+                action={handleClick}
+                key={`${Math.random() * 10 + 1}${item.route}`}
+              />
+            ))}
           </MenuList>
         </Menu>
       </Flex>
     </Box>
   );
-};
+}
 
 export default HomeHeader;
