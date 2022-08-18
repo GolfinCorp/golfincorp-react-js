@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from '@/components/organisms/Layout';
-import Home from '@/views/home/Home';
-import Auth from '@/views/auth/Auth';
+import Home from '@/views/Home';
+import Auth from '@/views/Auth';
 
 const AppRoutes = () => {
   return (

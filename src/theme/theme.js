@@ -91,13 +91,28 @@ export const baseTheme = extendTheme({
       }
     },
     Input: {
+      defaultProps: {
+        focusBorderColor: 'brand.primary'
+      }
+    },
+
+    Checkbox: {
       baseStyle: {
-        backgroundColor: 'brand.primary'
-      },
-      variants: {
-        auth: {
-          borderColor: 'brand.dark',
-          backgroundColor: 'red'
+        control: {
+          borderColor: 'brand.primary',
+          border: '2px',
+          _checked: {
+            _focus: {
+              bg: 'brand.primary',
+              borderColor: 'brand.primary'
+            },
+            _hover: {
+              bg: 'brand.primary',
+              borderColor: 'brand.primary'
+            },
+            bg: 'brand.primary',
+            borderColor: 'brand.primary'
+          }
         }
       }
     }
