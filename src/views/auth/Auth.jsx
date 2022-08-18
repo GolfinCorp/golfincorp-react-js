@@ -1,12 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/auth/useAuth.jsx"
 // Components
 import { Box, Input, Flex, Button, Checkbox, Text } from "@chakra-ui/react";
 // Local components
 import Container from "../../components/atoms/Container";
 import { Logo } from "../../components/atoms/icons";
+
 const Auth = () => {
   const navigate = useNavigate();
+  const { register, handleSubmit, watch } = useForm();
+  const {login} = useAuth()
+  const onSubmit = (data) => {
+    const email = watch("email");
+    const password = watch("password");
+    login({email, password});
+  };
   return (
     <Box bgColor="#fafafa">
       <Container
@@ -29,8 +39,8 @@ const Auth = () => {
           bgColor="brand.white"
           flexDir={"column"}
         >
-          <Input placeholder="Correo" />
-          <Input placeholder="Password" />
+          <Input placeholder="Correo" {...register("email")} />
+          <Input placeholder="Password" type="password" {...register("password")} />
           <Checkbox color="brand.200" fontWeight={"100"}>
             Recuerdame
           </Checkbox>
@@ -39,6 +49,7 @@ const Auth = () => {
             alignSelf={"center"}
             variant="primary"
             _hover={{ shadow: "lg" }}
+            onClick={onSubmit}
           >
             Inicia Sesión
           </Button>
