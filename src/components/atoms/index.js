@@ -1,1 +1,1 @@
-export { MinLogo, Logo } from "./icons";
+export { MinLogo, Logo } from './icons';

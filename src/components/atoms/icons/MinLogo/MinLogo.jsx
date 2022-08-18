@@ -1,7 +1,7 @@
-import React from "react";
-import { Img, Icon } from "@chakra-ui/react";
-import Golfincorp from "../../../assets/imgs/Frame.png";
-import { PropTypes } from "prop-types";
+import { Icon } from '@chakra-ui/react';
+import { object } from 'prop-types';
+import Golfincorp from '@/assets/imgs/Frame.png';
+
 const Logo = ({ ...props }) => {
   return (
     <Icon
@@ -65,7 +65,7 @@ const Logo = ({ ...props }) => {
 };
 
 Logo.propTypes = {
-  props: PropTypes.object,
+  props: object
 };
 
 export default Logo;

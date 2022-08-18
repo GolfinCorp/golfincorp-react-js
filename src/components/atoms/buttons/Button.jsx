@@ -1,23 +1,22 @@
-import React from "react";
-import { Button as ChakraButton } from "@chakra-ui/react";
-import PropTypes from "prop-types";
+import { Button as ChakraButton } from '@chakra-ui/react';
+import { string, func, object } from 'prop-types';
 
 const Button = ({ content, click, ...props }) => {
   return (
-    <ChakraButton
-      variant={"primary"}
-      onClick={click ? click : () => {}}
-      {...props}
-    >
+    <ChakraButton variant={'primary'} onClick={click} {...props}>
       {content}
     </ChakraButton>
   );
 };
 
-ChakraButton.propTypes = {
-  content: PropTypes.string,
-  click: PropTypes.func,
-  props: PropTypes.object,
+Button.defaultProps = {
+  click: () => {}
+};
+
+Button.propTypes = {
+  content: string,
+  click: func,
+  props: object
 };
 
 export default Button;

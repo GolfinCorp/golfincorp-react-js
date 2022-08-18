@@ -1,2 +1,2 @@
-export { default as Logo } from "./Logo.jsx";
-export { default as MinLogo } from "./MinLogo.jsx";
+export { default as Logo } from './Logo';
+export { default as MinLogo } from './MinLogo';
