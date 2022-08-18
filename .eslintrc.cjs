@@ -3,15 +3,15 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ["plugin:react/recommended", "airbnb"],
   overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ['react'],
+  plugins: ["react"],
   rules: {
-    'no-unused-vars': 'error',
-    'react/forbid-prop-types': 'disabled',
+    "no-unused-vars": "error",
+    "react/forbid-prop-types": "disabled",
   },
 };
