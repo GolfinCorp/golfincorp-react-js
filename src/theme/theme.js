@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+import { fonts, baseComponents, customComponents } from './styles';
 
 export const baseTheme = extendTheme({
   styles: {
@@ -19,102 +20,9 @@ export const baseTheme = extendTheme({
       100: '#DDDDDD'
     }
   },
-  fonts: {
-    heading: `'Bebas Neue', sans-serif`,
-    body: `'DM Sans', sans-serif`
-  },
+  fonts,
   components: {
-    Button: {
-      sizes: {
-        sm: { minW: '80px' },
-        md: { minW: '100px' },
-        lg: { minW: '120px' }
-      },
-      variants: {
-        primary: {
-          backgroundColor: 'brand.primary',
-          borderRadius: '6px',
-          fontWeight: 'normal',
-          color: 'brand.white'
-        },
-        outlined: {
-          bg: 'transparent',
-          border: '1px solid',
-          borderColor: 'brand.dark',
-          cursor: 'pointer',
-          fontWeight: 'normal',
-          _hover: {
-            backgroundColor: 'brand.dark',
-            color: 'brand.white'
-          }
-        },
-        ghost: {
-          bg: 'transparent',
-          border: 'none',
-          _hover: {
-            backgroundColor: 'brand.dark',
-            color: 'brand.white',
-            cursor: 'pointer'
-          }
-        },
-        'menu-button': {
-          h: '40px',
-          maxW: '40px',
-          px: '0px',
-          mx: '0px',
-          bg: 'transparent',
-          border: '1px solid',
-          borderColor: 'brand.dark',
-          cursor: 'pointer',
-          fontWeight: 'normal',
-          _hover: {
-            backgroundColor: 'brand.dark',
-            color: 'brand.white'
-          }
-        }
-      }
-    },
-    IconButton: {
-      sizes: {
-        sm: { minW: '50px' },
-        md: { minW: '50px' },
-        lg: { minW: '50px' }
-      },
-      variants: {
-        primary: {
-          maxW: '50px',
-          h: '50px',
-          backgroundColor: 'transparent',
-          border: '1px solid',
-          borderColor: 'brand.primary'
-        }
-      }
-    },
-    Input: {
-      defaultProps: {
-        focusBorderColor: 'brand.primary'
-      }
-    },
-
-    Checkbox: {
-      baseStyle: {
-        control: {
-          borderColor: 'brand.primary',
-          border: '2px',
-          _checked: {
-            _focus: {
-              bg: 'brand.primary',
-              borderColor: 'brand.primary'
-            },
-            _hover: {
-              bg: 'brand.primary',
-              borderColor: 'brand.primary'
-            },
-            bg: 'brand.primary',
-            borderColor: 'brand.primary'
-          }
-        }
-      }
-    }
+    ...baseComponents,
+    ...customComponents
   }
 });
