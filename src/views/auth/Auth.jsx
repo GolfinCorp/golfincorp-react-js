@@ -34,12 +34,7 @@ const Auth = () => {
           <Checkbox color="brand.200" fontWeight={"100"}>
             Recuerdame
           </Checkbox>
-          <Button
-            w="50%"
-            alignSelf={"center"}
-            variant="primary"
-            _hover={{ shadow: "lg" }}
-          >
+          <Button w="50%" alignSelf={"center"} _hover={{ shadow: "lg" }}>
             Inicia Sesión
           </Button>
           <Box mt="3">
