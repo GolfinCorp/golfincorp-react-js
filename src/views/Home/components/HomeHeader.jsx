@@ -1,4 +1,3 @@
-import React from "react";
 // ? components
 import {
   Flex,
@@ -7,13 +6,13 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  useToast,
-} from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
-import { motion } from "framer-motion";
+  useToast
+} from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import { motion } from 'framer-motion';
 // ? local components
-import NavItems from "./NavItems";
-import { Logo, MinLogo } from "../../../components/atoms/icons";
+import NavItems from './NavItems';
+import { Logo, MinLogo } from '@/components/atoms/icons';
 
 function HomeHeader() {
   // * Hooks declaration
@@ -23,17 +22,17 @@ function HomeHeader() {
 
   // * Variable declarations
   const navItems = [
-    { name: "Inicia Sesión", route: "/login" },
-    { name: "Registra tu club", route: "/" },
-    { name: "Sobre nosotros", route: "/" },
+    { name: 'Inicia Sesión', route: '/login' },
+    { name: 'Registra tu club', route: '/' },
+    { name: 'Sobre nosotros', route: '/' }
   ];
 
   // * Event handlers
   const handleClick = () => {
     toast({
-      title: "En construcción",
-      status: "warning",
-      position: "top",
+      title: 'En construcción',
+      status: 'warning',
+      position: 'top'
     });
   };
 
@@ -46,19 +45,19 @@ function HomeHeader() {
       as={motion.div}
       animate={{
         zIndex: 10,
-        y: ["0px", "20px", "0px"],
-        opacity: ["0", "0", "1"],
-        transition: "1s",
-        x: "0px",
+        y: ['0px', '20px', '0px'],
+        opacity: ['0', '0', '1'],
+        transition: '1s',
+        x: '0px'
       }}
     >
       {/* Desktop */}
       <Flex
         alignItems="center"
         justifyContent="space-between"
-        display={{ base: "none", md: "flex" }}
+        display={{ base: 'none', md: 'flex' }}
       >
-        <Logo w="131px" h="55px" _hover={{ cursor: "pointer" }} />
+        <Logo w="131px" h="55px" _hover={{ cursor: 'pointer' }} />
         <Button variant="outlined" onClick={handleClick}>
           Iniciar Sesión
         </Button>
@@ -67,9 +66,9 @@ function HomeHeader() {
       <Flex
         alignItems="center"
         justifyContent="space-between"
-        display={{ base: "flex", md: "none" }}
+        display={{ base: 'flex', md: 'none' }}
       >
-        <MinLogo w="55px" _hover={{ cursor: "pointer" }} />
+        <MinLogo w="55px" _hover={{ cursor: 'pointer' }} />
         <Menu>
           <MenuButton
             as={Flex}
@@ -79,9 +78,9 @@ function HomeHeader() {
             border="1px solid"
             borderColor="brand.dark"
             _hover={{
-              bgColor: "brand.dark",
-              color: "brand.white",
-              cursor: "pointer",
+              bgColor: 'brand.dark',
+              color: 'brand.white',
+              cursor: 'pointer'
             }}
           >
             <HamburgerIcon />

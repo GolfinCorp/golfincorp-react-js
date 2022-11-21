@@ -1,20 +1,19 @@
-import React from "react";
-import { Skeleton, SimpleGrid, Flex, Text } from "@chakra-ui/react";
+import { Skeleton, SimpleGrid, Flex, Text } from '@chakra-ui/react';
 // General Components
-import Container from "../../components/atoms/Container";
+import Container from '@/components/atoms/Container';
 
 // Local components
-import HomeHeader from "./components/HomeHeader";
-import HeroImg from "./components/HeroImg";
-import CustomButtom from "./components/CustomButtom";
+import HomeHeader from './components/HomeHeader';
+import HeroImg from './components/HeroImg';
+import CustomButtom from './components/CustomButtom';
 
 function Home() {
   const entryAnimation = {
-    y: ["0px", "20px", "0px"],
-    opacity: ["0", "0", "1"],
+    y: ['0px', '20px', '0px'],
+    opacity: ['0', '0', '1'],
 
-    transition: "1s",
-    x: "0px",
+    transition: '1s',
+    x: '0px'
   };
   return (
     <>
@@ -28,11 +27,11 @@ function Home() {
           <Flex justify="center" align="center">
             <Skeleton
               w="100%"
-              h={{ base: "20vh", md: "40vh" }}
+              h={{ base: '20vh', md: '40vh' }}
               borderRadius="6px"
               startColor="brand.primary"
               endColor="brand.dark"
-              speed={"1.5"}
+              speed={'1.5'}
             />
           </Flex>
           <Flex justify="center" align="center">
