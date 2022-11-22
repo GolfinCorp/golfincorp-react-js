@@ -11,10 +11,10 @@ import {
   Grid,
   GridItem,
   SimpleGrid,
-  Heading
+  Heading,
+  useStyleConfig
 } from '@chakra-ui/react';
 // Local components
-import Container from '@/components/atoms/Container';
 import { Logo } from '@/components/atoms/icons';
 import useAuth from '@/hooks/auth/';
 import CampImg from '@/assets/imgs/camp.jpeg';
@@ -28,21 +28,42 @@ const Auth = () => {
     login(credentials);
   };
 
+  const styles = {
+    container: useStyleConfig('loginContainer'),
+    loginImg: useStyleConfig('loginImgItem'),
+    cardContainer: useStyleConfig('loginCardContainer'),
+    cardGrid: useStyleConfig('loginCardGrid'),
+    card: useStyleConfig('loginCard'),
+    logo: useStyleConfig('loginLogo'),
+    loginForm: useStyleConfig('loginFormContainer'),
+    button: useStyleConfig('loginButton'),
+    overlay: useStyleConfig('loginOverlay')
+  };
+
   return (
-    <Box bgColor="#fafafa" minH="100vh" minW="100vw">
+    <Box __css={styles.container}>
       <SimpleGrid columns={2} h="100vh">
-        <SimpleGrid>
-          <Box
-            backgroundImage={CampImg}
-            backgroundPosition="center"
-            backgroundSize={'cover'}
+        <GridItem display={{ base: 'none', md: 'grid' }}>
+          <Box __css={styles.loginImg} backgroundImage={CampImg} />
+        </GridItem>
+        <GridItem __css={styles.cardContainer}>
+          <Grid
             h="100%"
-          ></Box>
-        </SimpleGrid>
-        <GridItem placeItems={'center'}>
-          <Grid h="100%" p="10" placeContent={'center'}>
-            <Box bgColor="brand.white" borderRadius="10px" p={8} shadow="md">
-              <Logo cursor="pointer" onClick={() => navigate('/')} />
+            p="10"
+            placeContent={'center'}
+            backgroundImage={{ base: CampImg, md: 'none' }}
+          >
+            <Box
+              bgColor="brand.white"
+              borderRadius="10px"
+              p={8}
+              shadow="md"
+              position="relative"
+              zIndex="99"
+            >
+              <Flex justify="center" mb="3">
+                <Logo cursor="pointer" onClick={() => navigate('/')} />
+              </Flex>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Flex gap={5} direction={'column'} w="100%">
                   <Heading as="h2" size="lg" color="brand.primary">
@@ -60,8 +81,7 @@ const Auth = () => {
                   <Button
                     type="submit"
                     w="50%"
-                    alignSelf={'center'}
-                    variant="primary"
+                    mx="auto"
                     _hover={{ shadow: 'lg' }}
                   >
                     Iniciar Sesión
@@ -91,6 +111,15 @@ const Auth = () => {
                 </Text>
               </Box>
             </Box>
+            <Box
+              display={{ base: 'block', md: 'none' }}
+              position="absolute"
+              top="0"
+              left="0"
+              h="100%"
+              w="100%"
+              backdropFilter="blur(5px)"
+            />
           </Grid>
         </GridItem>
       </SimpleGrid>
