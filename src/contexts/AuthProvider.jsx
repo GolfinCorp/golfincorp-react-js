@@ -4,18 +4,18 @@ import { getLocalStorage } from '@/helpers/localStorage';
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-  const [accessToken, setAccessToken] = useState(null);
+  const [authToken, setAuthToken] = useState(null);
 
   const data = {
-    accessToken,
-    setAccessToken
+    authToken,
+    setAuthToken
   };
 
   useEffect(() => {
-    const accessToken = getLocalStorage('accessToken');
+    const token = getLocalStorage('accessToken');
 
-    if (!accessToken) return;
-    setAccessToken(accessToken);
+    if (!token) return;
+    setAuthToken(token);
   }, []);
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
