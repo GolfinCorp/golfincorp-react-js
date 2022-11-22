@@ -1,16 +1,21 @@
 import { useContext } from 'react';
+import jwt from 'jwt-decode';
 import axiosInstance from '@/services/axios';
 import { AuthContext } from '@/contexts';
 import { setLocalStorage } from '@/helpers/localStorage';
 
 const useAuth = () => {
-  const { setAccessToken } = useContext(AuthContext);
+  const { setAuthToken, setUser } = useContext(AuthContext);
 
   const login = async (credentials) => {
     const response = await axiosInstance.post('/users/login/', credentials);
-    setAccessToken(response.data.token);
-    setLocalStorage('accessToken', response.data.token);
-    return response.data.token;
+    const token = response.data.token;
+    const user = jwt(token);
+
+    setAuthToken(token);
+    setUser(user);
+    setLocalStorage('accessToken', token);
+    return token;
   };
 
   return { login, ...useContext(AuthContext) };
