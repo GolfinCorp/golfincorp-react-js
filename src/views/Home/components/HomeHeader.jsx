@@ -1,4 +1,5 @@
 // ? components
+import { useNavigate } from 'react-router-dom';
 import {
   Flex,
   Button,
@@ -16,6 +17,7 @@ import { Logo, MinLogo } from '@/components/atoms/icons';
 
 function HomeHeader() {
   // * Hooks declaration
+  const navigate = useNavigate();
   const toast = useToast();
 
   // * State declaration
@@ -27,7 +29,7 @@ function HomeHeader() {
     { name: 'Sobre nosotros', route: '/' }
   ];
 
-  // * Event handlers
+  // * Event handler
   const handleClick = () => {
     toast({
       title: 'En construcción',
@@ -58,7 +60,7 @@ function HomeHeader() {
         display={{ base: 'none', md: 'flex' }}
       >
         <Logo w="131px" h="55px" _hover={{ cursor: 'pointer' }} />
-        <Button variant="outlined" onClick={handleClick}>
+        <Button variant="outlined" onClick={() => navigate('/login')}>
           Iniciar Sesión
         </Button>
       </Flex>

@@ -7,19 +7,24 @@ import Auth from '@/views/Auth';
 import Admin from '@/views/Admin';
 import Dashboard from '@/views/Dashboard';
 import Unauthorized from '@/views/Unauthorized';
+import NoMatch from '@/views/NoMatch';
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
+          <Route path="*" element={<NoMatch />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Auth />} />
 
           <Route element={<RequireAuth allowedRoles={['admin']} />}>
             <Route path="/admin" element={<Admin />} />
           </Route>
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route element={<RequireAuth allowedRoles={['member']} />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
 
           <Route path="/unauthorized" element={<Unauthorized />} />
         </Routes>
