@@ -8,7 +8,6 @@ import {
   Button,
   Checkbox,
   Text,
-  Grid,
   GridItem,
   SimpleGrid,
   Heading,
@@ -42,31 +41,56 @@ const Auth = () => {
 
   return (
     <Box __css={styles.container}>
+      <Box
+        __css={styles.loginImg}
+        w="100%"
+        position="absolute"
+        h="100vh"
+        zIndex="1"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        backgroundImage={CampImg}
+      />
       <SimpleGrid columns={2} h="100vh">
-        <GridItem display={{ base: 'none', md: 'grid' }}>
-          <Box __css={styles.loginImg} backgroundImage={CampImg} />
-        </GridItem>
-        <GridItem __css={styles.cardContainer}>
-          <Grid
-            h="100%"
+        <GridItem
+          display={{ base: 'none', md: 'grid' }}
+          colSpan={{ base: 0, md: 1 }}
+          placeContent="center"
+          zIndex={10}
+        ></GridItem>
+        <GridItem colSpan={{ base: 2, md: 1 }}>
+          <Box
             p="10"
-            placeContent={'center'}
-            backgroundImage={{ base: CampImg, md: 'none' }}
+            h="100%"
+            position="relative"
+            display="flex"
+            justifyContent="center"
+            alignItems={'center'}
           >
             <Box
               bgColor="brand.white"
               borderRadius="10px"
-              p={8}
+              w={{ base: '100%', xl: '60%' }}
+              h="fit-content"
+              p="10"
               shadow="md"
               position="relative"
               zIndex="99"
             >
-              <Flex justify="center" mb="3">
-                <Logo cursor="pointer" onClick={() => navigate('/')} />
-              </Flex>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Flex gap={5} direction={'column'} w="100%">
-                  <Heading as="h2" size="lg" color="brand.primary">
+                  <Logo
+                    cursor="pointer"
+                    mx="auto"
+                    onClick={() => navigate('/')}
+                  />
+
+                  <Heading
+                    as="h2"
+                    size="lg"
+                    textAlign={'center'}
+                    color="brand.primary"
+                  >
                     ¿Qué esperas para jugar?
                   </Heading>
                   <Input placeholder="Correo" {...register('email')} />
@@ -111,18 +135,22 @@ const Auth = () => {
                 </Text>
               </Box>
             </Box>
-            <Box
-              display={{ base: 'block', md: 'none' }}
-              position="absolute"
-              top="0"
-              left="0"
-              h="100%"
-              w="100%"
-              backdropFilter="blur(5px)"
-            />
-          </Grid>
+          </Box>
         </GridItem>
       </SimpleGrid>
+      <Box
+        display={{ base: 'block' }}
+        position="absolute"
+        top="0"
+        clipPath={'polygon(100% 0, 100% 100%, 0 100%, 54% 56%)'}
+        left="0"
+        h="100%"
+        zIndex="2"
+        w="100%"
+        boxShadow={'28px -24px 84px 0px rgba(0,0,0,1)'}
+        // bgGradient={'linear(to-rb, rgba(0,0,0,0.0.1), rgba(119, 157, 24, 0.9))'}
+        backdropFilter="blur(30px)"
+      />
     </Box>
   );
 };

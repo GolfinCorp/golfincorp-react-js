@@ -1,17 +1,21 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from '@chakra-ui/react';
 
 const Input = defineStyleConfig({
   baseStyle: {
-    backgroundColor: "brand.primary",
+    field: {
+      borderRadius: '14px',
+      border: '2px solid',
+      borderColor: 'brand.100'
+    }
   },
   variants: {
     base: {},
     auth: {
-      borderColor: "brand.dark",
-      backgroundColor: "red",
-    },
+      borderColor: 'brand.dark',
+      backgroundColor: 'red'
+    }
   },
-  defaultProps: { variant: "base" },
+  defaultProps: { variant: 'base' }
 });
 
 export default Input;

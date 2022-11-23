@@ -22,7 +22,7 @@ const HeroImg = ({ entryAnimation }) => {
           display="flex"
           gap="2"
         >
-          <Text color="brand.primary">RESERVA</Text> <Text>AHORA</Text>
+          <Text>RESERVA</Text> <Text color="brand.primary">AHORA</Text>
         </Heading>
       </Flex>
       <Box
@@ -33,9 +33,10 @@ const HeroImg = ({ entryAnimation }) => {
         left="0"
         as={motion.div}
         animate={entryAnimation}
+        zIndex="1"
       >
         <Flex h="100%" align={'center'} justify="center">
-          <Img src={GolfText} w="90%" maxW={{ base: '400px', lg: '600px' }} />
+          <Img src={GolfText} w="90%" maxW={{ base: '1000px', lg: '1000px' }} />
         </Flex>
       </Box>
       <Flex
@@ -45,13 +46,9 @@ const HeroImg = ({ entryAnimation }) => {
         bottom={0}
         justify="center"
         align="center"
+        zIndex={'0'}
       >
-        <Img
-          src={circle}
-          w="80%"
-          maxW={{ base: '400px', lg: '600px' }}
-          mx="auto"
-        />
+        <Img src={circle} w="800px" mx="auto" />
       </Flex>
       <Flex
         as={motion.div}
@@ -64,6 +61,7 @@ const HeroImg = ({ entryAnimation }) => {
         }}
         position="absolute"
         w="100vw"
+        zIndex="2"
         right={{ base: '10%', md: '7%', lg: '5%' }}
         bottom={0}
         justify="center"
@@ -73,7 +71,7 @@ const HeroImg = ({ entryAnimation }) => {
           src={TWoods}
           objectFit="contain"
           mx="auto"
-          maxW={{ base: '400px', lg: '600px' }}
+          w={{ base: '800px', lg: '1100px' }}
         />
       </Flex>
     </>
