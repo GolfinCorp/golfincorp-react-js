@@ -4,7 +4,8 @@ import RequireAuth from './RequireAuth';
 import Layout from '@/components/organisms/Layout';
 import Home from '@/views/Home';
 import Auth from '@/views/Auth';
-import Admin from '@/views/Admin';
+import Calendar from '@/views/Admin/Calendar';
+import Members from '@/views/Admin/Members';
 import Dashboard from '@/views/Dashboard';
 import Unauthorized from '@/views/Unauthorized';
 import NoMatch from '@/views/NoMatch';
@@ -19,7 +20,8 @@ const AppRoutes = () => {
           <Route path="/login" element={<Auth />} />
 
           <Route element={<RequireAuth allowedRoles={['admin']} />}>
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/members" element={<Members />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={['member']} />}>
