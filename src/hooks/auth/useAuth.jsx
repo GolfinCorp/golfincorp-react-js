@@ -15,7 +15,7 @@ const useAuth = () => {
     setAuthToken(token);
     setUser(user);
     setLocalStorage('accessToken', token);
-    return token;
+    return user;
   };
 
   return { login, ...useContext(AuthContext) };

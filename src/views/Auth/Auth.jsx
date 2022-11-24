@@ -18,13 +18,19 @@ import { Logo } from '@/components/atoms/icons';
 import useAuth from '@/hooks/auth/';
 import CampImg from '@/assets/imgs/camp.jpeg';
 
+const ROLE_ROUTES = {
+  member: '/dashboard',
+  admin: '/admin'
+};
+
 const Auth = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const { login } = useAuth();
 
-  const onSubmit = (credentials) => {
-    login(credentials);
+  const onSubmit = async (credentials) => {
+    const user = await login(credentials);
+    navigate(ROLE_ROUTES[user.role]);
   };
 
   const styles = {
