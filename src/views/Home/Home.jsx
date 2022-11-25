@@ -1,7 +1,7 @@
-import { Skeleton, SimpleGrid, Flex, Text } from '@chakra-ui/react';
+import { Skeleton, SimpleGrid, Flex, Text, Box } from '@chakra-ui/react';
 // General Components
 import Container from '@/components/atoms/Container';
-
+import { BallIcon } from '@/components/atoms/icons';
 // Local components
 import HomeHeader from './components/HomeHeader';
 import HeroImg from './components/HeroImg';
@@ -34,8 +34,11 @@ function Home() {
               speed={'1.5'}
             />
           </Flex>
-          <Flex justify="center" align="center">
+          <Flex justify="center" align="center" flexDir={'column'}>
             <Text>Proximamente...</Text>
+            <Box>
+              <BallIcon ballSize={50} />
+            </Box>
           </Flex>
         </SimpleGrid>
       </Container>

@@ -18,6 +18,8 @@ const AppRoutes = () => {
           <Route path="*" element={<NoMatch />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Auth />} />
+
+          {/* ADMIN ROUTES */}
           <Route element={<RequireAuth allowedRoles={['admin']} />}>
             <Route path="/admin" element={<DashboardLayout />}>
               <Route path="*" element={<NoMatch />} />
@@ -26,6 +28,7 @@ const AppRoutes = () => {
             </Route>
           </Route>
 
+          {/* USER ROUTES */}
           <Route element={<RequireAuth allowedRoles={['member']} />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>

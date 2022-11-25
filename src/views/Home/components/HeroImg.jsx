@@ -14,6 +14,8 @@ const HeroImg = ({ entryAnimation }) => {
         justify="center"
         as={motion.div}
         animate={entryAnimation}
+        position="relative"
+        zIndex="10"
       >
         <Heading
           as={'h2'}
@@ -27,7 +29,7 @@ const HeroImg = ({ entryAnimation }) => {
       </Flex>
       <Box
         position="absolute"
-        top="0"
+        top="10"
         h="100vh"
         w="100vw"
         left="0"
