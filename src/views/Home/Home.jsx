@@ -37,7 +37,7 @@ function Home() {
           <Flex justify="center" align="center" flexDir={'column'}>
             <Text>Proximamente...</Text>
             <Box>
-              <BallIcon ballSize={50} />
+              <BallIcon ballSize={30} />
             </Box>
           </Flex>
         </SimpleGrid>
