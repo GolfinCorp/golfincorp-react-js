@@ -7,7 +7,6 @@ const MatchCard = () => {
     <SimpleGrid
       columns={12}
       borderRadius="14px"
-      shadow="md"
       backgroundColor="brand.50"
       p="5"
       cursor="pointer"
