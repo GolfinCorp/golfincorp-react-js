@@ -20,7 +20,7 @@ import CampImg from '@/assets/imgs/camp.jpeg';
 
 const ROLE_ROUTES = {
   member: '/dashboard',
-  admin: '/members'
+  admin: '/admin'
 };
 
 const Auth = () => {

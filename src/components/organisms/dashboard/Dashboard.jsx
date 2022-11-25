@@ -34,19 +34,19 @@ const Dashboard = () => {
       },
       {
         title: 'Miembros',
-        link: '/members',
+        link: '/admin/members',
         icon: <MdOutlineSupervisorAccount />
       },
       {
         title: 'Pagos',
-        link: '/payments',
+        link: '/admin/payments',
         icon: <MdAutoGraph />
       }
     ],
     setting: [
       {
         title: 'settings',
-        link: '/settings',
+        link: '/admin/settings',
         icon: <MdSettings />
       },
       {
@@ -88,7 +88,7 @@ const Dashboard = () => {
           </Box>
         </GridItem>
         <GridItem colSpan={{ base: 12, md: 10 }}>
-          <Box p="5" border="1px solid black">
+          <Box p="5">
             <Outlet />
           </Box>
         </GridItem>

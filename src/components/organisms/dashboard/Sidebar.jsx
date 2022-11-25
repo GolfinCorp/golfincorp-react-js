@@ -1,11 +1,13 @@
-import React from 'react';
 import { Button, Grid, Flex } from '@chakra-ui/react';
 import Logo from '@/components/atoms/icons/Logo';
-import { MdCalendarToday } from 'react-icons/md';
-
+import { useNavigate } from 'react-router-dom';
 const Sidebar = ({ menuItems }) => {
   const { menu, setting } = menuItems;
-  console.log(menu);
+  const navigate = useNavigate();
+
+  const handleRouter = (link) => {
+    navigate(link);
+  };
   return (
     <>
       <Logo />
@@ -19,6 +21,7 @@ const Sidebar = ({ menuItems }) => {
               gap="3"
               alignItems={'center'}
               leftIcon={item.icon}
+              onClick={() => handleRouter(item.link)}
             >
               {item.title}
             </Button>
@@ -33,6 +36,7 @@ const Sidebar = ({ menuItems }) => {
               gap="3"
               alignItems={'center'}
               leftIcon={item.icon}
+              onClick={() => handleRouter(item.link)}
             >
               {item.title}
             </Button>
