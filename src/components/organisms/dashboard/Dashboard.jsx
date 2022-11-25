@@ -48,12 +48,12 @@ const Dashboard = () => {
     ],
     setting: [
       {
-        title: 'settings',
+        title: 'Configuración',
         link: '/admin/settings',
         icon: <MdSettings />
       },
       {
-        title: 'logout',
+        title: 'Cerrar Sesión',
         link: '',
         icon: <MdLogout />,
         onClick: logout
