@@ -1,5 +1,10 @@
+import DateFlex from '@/components/molecules/Date';
 const Calendar = () => {
-  return <div>Calendar</div>;
+  return (
+    <>
+      <DateFlex />
+    </>
+  );
 };
 
 export default Calendar;
