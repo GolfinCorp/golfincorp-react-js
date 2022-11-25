@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from 'react';
 import {
   SimpleGrid,
   GridItem,
@@ -22,9 +22,12 @@ import {
 import Sidebar from './Sidebar';
 import Logo from '@/components/atoms/icons/Logo';
 import { Outlet } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
+
 const Dashboard = () => {
+  const { logout } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  const btnRef = useRef();
   const mockItems = {
     menu: [
       {
@@ -52,7 +55,8 @@ const Dashboard = () => {
       {
         title: 'logout',
         link: '',
-        icon: <MdLogout />
+        icon: <MdLogout />,
+        onClick: logout
       }
     ]
   };

@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Badge
-} from '@chakra-ui/react';
+import { Tr, Td, Badge } from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
+import Table from '@/components/organisms/Table';
+
+const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 
 const Members = () => {
   const [members, setMembers] = useState(null);
@@ -23,33 +17,21 @@ const Members = () => {
   }, []);
 
   return (
-    <TableContainer background="#f9f9f9" borderRadius="md">
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Nombre</Th>
-            <Th>Apellido</Th>
-            <Th>Membresía</Th>
-            <Th>Estado</Th>
+    <Table headers={TABLE_HEADERS}>
+      {members &&
+        members.map((elm) => (
+          <Tr key={elm._id}>
+            <Td>{elm.firstName}</Td>
+            <Td>{elm.lastname}</Td>
+            <Td>N°{elm.membership}</Td>
+            <Td>
+              <Badge color="green" borderRadius={6} p={2}>
+                {elm.status}
+              </Badge>
+            </Td>
           </Tr>
-        </Thead>
-        <Tbody>
-          {members &&
-            members.map((elm) => (
-              <Tr key={elm._id}>
-                <Td>{elm.firstName}</Td>
-                <Td>{elm.lastname}</Td>
-                <Td>N°{elm.membership}</Td>
-                <Td>
-                  <Badge color="green" borderRadius={6} p={2}>
-                    {elm.status}
-                  </Badge>
-                </Td>
-              </Tr>
-            ))}
-        </Tbody>
-      </Table>
-    </TableContainer>
+        ))}
+    </Table>
   );
 };
 

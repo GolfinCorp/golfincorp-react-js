@@ -4,12 +4,10 @@ import {
   Tbody,
   Tr,
   Th,
-  // Td,
   TableContainer
-  // Badge
 } from '@chakra-ui/react';
 
-const Table = ({ headers, items, keys }) => {
+const Table = ({ headers, children }) => {
   return (
     <TableContainer background="#f9f9f9" borderRadius="md">
       <ChakraTable variant="simple">
@@ -20,20 +18,7 @@ const Table = ({ headers, items, keys }) => {
             ))}
           </Tr>
         </Thead>
-        <Tbody>
-          {/* {items.map((item) => (
-              <Tr key={item._id}>
-                <Td>{item.firstName}</Td>
-                <Td>{item.lastname}</Td>
-                <Td>N°{item.membership}</Td>
-                <Td>
-                  <Badge color="green" borderRadius={6} p={2}>
-                    {item.status}
-                  </Badge>
-                </Td>
-              </Tr>
-            ))} */}
-        </Tbody>
+        <Tbody>{children}</Tbody>
       </ChakraTable>
     </TableContainer>
   );

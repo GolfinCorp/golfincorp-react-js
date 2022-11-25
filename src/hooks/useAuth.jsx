@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import jwt from 'jwt-decode';
 import axiosInstance from '@/services/axios';
 import { AuthContext } from '@/contexts';
-import { setLocalStorage } from '@/helpers/localStorage';
+import { setLocalStorage, deleteLocalStorage } from '@/helpers/localStorage';
 
 const useAuth = () => {
   const { setAuthToken, setUser } = useContext(AuthContext);
@@ -18,7 +18,14 @@ const useAuth = () => {
     return user;
   };
 
-  return { login, ...useContext(AuthContext) };
+  const logout = async () => {
+    setAuthToken(null);
+    setUser(null);
+    deleteLocalStorage('accessToken');
+    return true;
+  };
+
+  return { login, logout, ...useContext(AuthContext) };
 };
 
 export default useAuth;

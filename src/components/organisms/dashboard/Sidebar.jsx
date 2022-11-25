@@ -1,6 +1,7 @@
 import { Button, Grid, Flex } from '@chakra-ui/react';
 import Logo from '@/components/atoms/icons/Logo';
 import { useNavigate } from 'react-router-dom';
+
 const Sidebar = ({ menuItems }) => {
   const { menu, setting } = menuItems;
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Sidebar = ({ menuItems }) => {
               gap="3"
               alignItems={'center'}
               leftIcon={item.icon}
-              onClick={() => handleRouter(item.link)}
+              onClick={item.onClick ?? (() => handleRouter(item.link))}
             >
               {item.title}
             </Button>
