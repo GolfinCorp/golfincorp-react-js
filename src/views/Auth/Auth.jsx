@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 // Local components
 import { Logo } from '@/components/atoms/icons';
-import useAuth from '@/hooks/auth/';
+import useAuth from '@/hooks/useAuth';
 import CampImg from '@/assets/imgs/camp.jpeg';
 
 const ROLE_ROUTES = {

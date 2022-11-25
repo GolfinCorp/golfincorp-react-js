@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import useAuth from '@/hooks/auth/useAuth';
+import useAuth from '@/hooks/useAuth';
 
 const RequireAuth = ({ allowedRoles }) => {
   const [loaded, setLoaded] = useState(false);

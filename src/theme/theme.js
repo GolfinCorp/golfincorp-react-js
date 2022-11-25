@@ -20,6 +20,12 @@ export const baseTheme = extendTheme({
       100: '#DDDDDD'
     }
   },
+  radii: {
+    none: '0',
+    sm: '2px',
+    base: '4px',
+    md: '6px'
+  },
   fonts,
   components: {
     ...baseComponents,
