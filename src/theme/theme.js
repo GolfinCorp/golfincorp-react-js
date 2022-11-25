@@ -17,7 +17,26 @@ export const baseTheme = extendTheme({
       dark: '#181816',
       gradient: '#3F3F3F',
       white: '#fafafa',
-      100: '#DDDDDD'
+      badge: {
+        success: {
+          bg: '#edf7ed',
+          text: '#00CC08'
+        },
+        danger: {
+          bg: '#f8f3ed',
+          text: '#e67c00'
+        },
+        active: {
+          bg: '#edf1f7',
+          text: '#0052cc'
+        },
+        finished: {
+          bg: '#f7edf4',
+          text: '#cc0093'
+        }
+      },
+      100: '#DDDDDD',
+      50: '#f9f9f9'
     }
   },
   radii: {

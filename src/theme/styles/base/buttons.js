@@ -5,7 +5,10 @@ const Button = defineStyleConfig({
     background: 'brand.primary',
     borderRadius: '10px',
     fontWeight: 'normal',
-    color: 'brand.dark'
+    color: 'brand.dark',
+    _hover: {
+      shadow: 'lg'
+    }
   },
   sizes: {
     sm: { minW: '80px' },

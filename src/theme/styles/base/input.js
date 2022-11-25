@@ -3,9 +3,16 @@ import { defineStyleConfig } from '@chakra-ui/react';
 const Input = defineStyleConfig({
   baseStyle: {
     field: {
-      borderRadius: '14px',
-      border: '2px solid',
-      borderColor: 'brand.100'
+      borderRadius: '18px',
+      border: '1px',
+      borderColor: 'transparent',
+      backgroundColor: '#fafafa',
+      _focus: {
+        borderColor: 'brand.primary'
+      },
+      _hover: {
+        borderColor: 'brand.primary'
+      }
     }
   },
   variants: {

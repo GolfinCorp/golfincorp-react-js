@@ -9,7 +9,7 @@ import {
 
 const Table = ({ headers, children }) => {
   return (
-    <TableContainer background="#f9f9f9" borderRadius="md">
+    <TableContainer background="brand.50" borderRadius="md">
       <ChakraTable variant="simple">
         <Thead>
           <Tr>

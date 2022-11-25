@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Tr, Td, Badge } from '@chakra-ui/react';
+import { Tr, Td, Badge, Button, Flex, Box } from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
 import Table from '@/components/organisms/Table';
+import { Searchbar } from '@/components';
 import DateFlex from '@/components/molecules/Date/Date';
 const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 
@@ -18,7 +19,18 @@ const Members = () => {
 
   return (
     <>
-      <DateFlex />
+      <DateFlex>
+        <Flex
+          gap="5"
+          align="center"
+          justify={{ base: 'space-between', md: 'none' }}
+        >
+          <Box>
+            <Button>Agregar miembro</Button>
+          </Box>
+          <Searchbar />
+        </Flex>
+      </DateFlex>
       <Table headers={TABLE_HEADERS}>
         {members &&
           members.map((elm) => (
@@ -27,9 +39,7 @@ const Members = () => {
               <Td>{elm.lastname}</Td>
               <Td>N°{elm.membership}</Td>
               <Td>
-                <Badge color="green" borderRadius={6} p={2}>
-                  {elm.status}
-                </Badge>
+                <Badge variant="success">{elm.status}</Badge>
               </Td>
             </Tr>
           ))}

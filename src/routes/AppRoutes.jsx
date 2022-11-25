@@ -8,7 +8,7 @@ import Dashboard from '@/views/User';
 import Unauthorized from '@/views/Unauthorized';
 import NoMatch from '@/views/NoMatch';
 import Calendar from '@/views/Admin/Calendar';
-import DashboardLayout from '@/components/organisms/dashboard/Dashboard';
+import { DashboardLayout } from '@/components/organisms';
 import Members from '@/views/Admin/Members';
 const AppRoutes = () => {
   return (
