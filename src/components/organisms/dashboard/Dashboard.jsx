@@ -83,7 +83,7 @@ const Dashboard = () => {
       </Flex>
       <SimpleGrid columns={12}>
         <GridItem
-          colSpan={{ base: 0, md: 2 }}
+          colSpan={{ base: 0, md: 3, lg: 2 }}
           display={{ base: 'none', md: 'grid' }}
           h="80vh"
         >
@@ -91,7 +91,7 @@ const Dashboard = () => {
             <Sidebar menuItems={mockItems} />
           </Box>
         </GridItem>
-        <GridItem colSpan={{ base: 12, md: 10 }}>
+        <GridItem colSpan={{ base: 12, md: 9, lg: 10 }}>
           <Box p="5">
             <Outlet />
           </Box>

@@ -13,7 +13,7 @@ const DateFlex = ({ children }) => {
     year: 'numeric'
   });
   return (
-    <Flex w="100%" justifyContent="space-between">
+    <Flex w="100%" justifyContent="space-between" mb="5">
       <Box>
         <Text fontSize="24px">{month}</Text>
         <Text fontSize="16px" color="gray.500">
