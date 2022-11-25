@@ -6,10 +6,11 @@ import Home from '@/views/Home';
 import Auth from '@/views/Auth';
 import Calendar from '@/views/Admin/Calendar';
 import Members from '@/views/Admin/Members';
-import Dashboard from '@/views/Dashboard';
+
+import Dashboard from '@/views/User';
 import Unauthorized from '@/views/Unauthorized';
 import NoMatch from '@/views/NoMatch';
-
+import DashboardLayout from '@/components/organisms/dashboard/Dashboard';
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -18,10 +19,11 @@ const AppRoutes = () => {
           <Route path="*" element={<NoMatch />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Auth />} />
-
           <Route element={<RequireAuth allowedRoles={['admin']} />}>
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/members" element={<Members />} />
+            <Route path="/admin" element={<DashboardLayout />}>
+              <Route path="" element={<Calendar />} />
+              <Route path="members" element={<Members />} />
+            </Route>
           </Route>
 
           <Route element={<RequireAuth allowedRoles={['member']} />}>
