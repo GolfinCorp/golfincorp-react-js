@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Tr, Td, Badge, Button, Flex, Box } from '@chakra-ui/react';
+import {
+  Tr,
+  Td,
+  Badge,
+  Button,
+  Flex,
+  Box,
+  useDisclosure
+} from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
 import Table from '@/components/organisms/Table';
 import { Searchbar } from '@/components';
-import DateFlex from '@/components/molecules/Date/Date';
+import { DateFlex, MemberModal } from '@/components/molecules';
+import MembersTr from './MembersTr';
 const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 
 const Members = () => {
   const [members, setMembers] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { getMembers } = useMembers();
 
   useEffect(() => {
@@ -26,24 +36,16 @@ const Members = () => {
           justify={{ base: 'space-between', md: 'none' }}
         >
           <Box>
-            <Button>Agregar miembro</Button>
+            <Button onClick={onOpen}>Agregar miembro</Button>
           </Box>
           <Searchbar />
         </Flex>
       </DateFlex>
       <Table headers={TABLE_HEADERS}>
         {members &&
-          members.map((elm) => (
-            <Tr key={elm._id}>
-              <Td>{elm.firstName}</Td>
-              <Td>{elm.lastname}</Td>
-              <Td>N°{elm.membership}</Td>
-              <Td>
-                <Badge variant="success">{elm.status}</Badge>
-              </Td>
-            </Tr>
-          ))}
+          members.map((member) => <MembersTr key={member._id} elm={member} />)}
       </Table>
+      <MemberModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
