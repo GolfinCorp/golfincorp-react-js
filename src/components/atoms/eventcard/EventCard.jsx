@@ -18,7 +18,7 @@ const EventCard = () => {
         Lorem ipsum dolor sit amet.
       </Text>
       <Flex justifyContent="space-between" mt="5" alignItems="center">
-        <Text>5 people</Text>
+        <Text color="gray.500">5 people</Text>
         <Flex gap="2" justify={'center'} align="center" color="brand.primary">
           <MdAccessTime />
           <Text>08:00 - 09:30 AM</Text>

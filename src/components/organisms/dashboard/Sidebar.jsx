@@ -19,7 +19,7 @@ const Sidebar = ({ menuItems }) => {
               variant={'ghost'}
               key={`${index}${item.link}`}
               justifyContent="start"
-              gap="3"
+              gap="1"
               alignItems={'center'}
               leftIcon={item.icon}
               onClick={() => handleRouter(item.link)}
@@ -34,7 +34,7 @@ const Sidebar = ({ menuItems }) => {
               variant={'ghost'}
               key={`${index}${item.link}`}
               justifyContent="start"
-              gap="3"
+              gap="1"
               alignItems={'center'}
               leftIcon={item.icon}
               onClick={item.onClick ?? (() => handleRouter(item.link))}

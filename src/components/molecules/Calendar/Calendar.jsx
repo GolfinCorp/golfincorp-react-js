@@ -39,6 +39,7 @@ const Calendar = () => {
         duration: 9000,
         isClosable: true
       });
+      return;
     }
     if (day.getDay() === 0 || day.getDay() === 6) {
       toast({
