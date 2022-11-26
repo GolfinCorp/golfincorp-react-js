@@ -43,7 +43,8 @@ export const baseTheme = extendTheme({
     none: '0',
     sm: '2px',
     base: '4px',
-    md: '6px'
+    md: '6px',
+    card: '18px'
   },
   fonts,
   components: {

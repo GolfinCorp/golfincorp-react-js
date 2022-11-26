@@ -3,7 +3,7 @@ import { defineStyleConfig } from '@chakra-ui/react';
 const Input = defineStyleConfig({
   baseStyle: {
     field: {
-      borderRadius: '18px',
+      borderRadius: 'card',
       border: '1px',
       borderColor: 'transparent',
       backgroundColor: '#fafafa',

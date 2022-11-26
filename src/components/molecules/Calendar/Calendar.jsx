@@ -8,7 +8,6 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { getDays } from './utils/getDays';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import Day from './Day';
 const date = new Date();
 
