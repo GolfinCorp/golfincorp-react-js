@@ -1,15 +1,25 @@
 import React from 'react';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { MdSearch } from 'react-icons/md';
+import { MdSearch, MdCancel } from 'react-icons/md';
 
-const Searchbar = ({ ...props }) => {
+const Searchbar = ({ searchFunc, searchTerm, reset, ...props }) => {
   return (
     <InputGroup {...props}>
       {/* eslint-disable-next-line react/no-children-prop */}
-      <InputLeftElement color="brand.100" pointerEvents={'auto'}>
-        <MdSearch color="inherit" />
-      </InputLeftElement>
-      <Input color="brand.dark" />
+      {searchTerm === '' ? (
+        <InputLeftElement color="brand.100" pointerEvents={'auto'}>
+          <MdSearch color="inherit" />
+        </InputLeftElement>
+      ) : (
+        <InputLeftElement color="brand.100" onClick={reset}>
+          <MdCancel />
+        </InputLeftElement>
+      )}
+      <Input
+        color="brand.dark"
+        onChange={(e) => searchFunc(e)}
+        value={searchTerm}
+      />
     </InputGroup>
   );
 };
