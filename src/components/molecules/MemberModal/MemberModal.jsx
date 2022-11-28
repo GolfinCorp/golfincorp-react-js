@@ -12,6 +12,7 @@ import {
   Input,
   Button
 } from '@chakra-ui/react';
+
 const MemberModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">

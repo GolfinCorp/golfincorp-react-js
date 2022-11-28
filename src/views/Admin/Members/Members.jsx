@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Button, Flex, Box, useDisclosure, Tr, Text } from '@chakra-ui/react';
+import { Button, Flex, Box, useDisclosure } from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
 import Table from '@/components/organisms/Table';
 import { Searchbar } from '@/components';
 import { DateFlex, MemberModal } from '@/components/molecules';
-import MembersTr from './MembersTr';
+import MemberList from './components/MemberList';
+
+// Constante
 const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 
 const Members = () => {
+  // variables, estados y hooks
   const [members, setMembers] = useState(null);
   const [searchMembers, setSearchMembers] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getMembers } = useMembers();
 
+  // Event handlers
   const handleSearch = () => {
     const searchedResults = members.filter(
       (member) =>
         member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         member.lastname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    console.log(searchedResults);
     setSearchMembers(searchedResults);
-    return searchedResults;
   };
 
   const reset = () => {
@@ -34,6 +36,7 @@ const Members = () => {
     handleSearch();
   };
 
+  // Efectos secundarios
   useEffect(() => {
     (async () => {
       const membersResponse = await getMembers();
@@ -60,15 +63,12 @@ const Members = () => {
         </Flex>
       </DateFlex>
       <Table headers={TABLE_HEADERS}>
-        {searchTerm !== '' && searchMembers && searchMembers.length <= 0 ? (
-          <Text>No hay resultados ":("</Text>
-        ) : searchTerm !== '' && searchMembers && searchMembers.length > 0 ? (
-          searchMembers.map((member) => (
-            <MembersTr key={member._id} elm={member} />
-          ))
-        ) : (
-          members &&
-          members.map((member) => <MembersTr key={member._id} elm={member} />)
+        {members && (
+          <MemberList
+            searchMembers={searchMembers}
+            searchTerm={searchTerm}
+            members={members}
+          />
         )}
       </Table>
       <MemberModal isOpen={isOpen} onClose={onClose} />

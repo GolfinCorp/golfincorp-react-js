@@ -21,7 +21,7 @@ const days = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
 
 const Calendar = () => {
   // States and variables
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(date);
   const [daysInMonth, setDaysInMonth] = useState(initialCalendarDates);
   const [month, setMonth] = useState(initialMonth);
   const toast = useToast();
