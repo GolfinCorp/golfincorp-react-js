@@ -1,16 +1,32 @@
-import React from 'react';
-import { Tr, Td, Badge, Text, Box } from '@chakra-ui/react';
-
+import { useRef } from 'react';
+import { Tr, Td, Badge, Text, Box, useDisclosure } from '@chakra-ui/react';
+import { Drawer } from '@/components';
+import { MemberDrawer } from '@/components/molecules';
 const MembersTr = ({ member }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+  const { firstName, lastname, membership, status } = member;
+  const drawerTitle = `Modificar ${firstName} ${lastname} / M${membership}`;
   return (
-    <Tr>
-      <Td>{member.firstName}</Td>
-      <Td>{member.lastname}</Td>
-      <Td>N°{member.membership}</Td>
-      <Td>
-        <Badge variant="success">{member.status}</Badge>
-      </Td>
-    </Tr>
+    <>
+      <Tr ref={btnRef} onClick={onOpen}>
+        <Td>{firstName}</Td>
+        <Td>{lastname}</Td>
+        <Td>N°{membership}</Td>
+        <Td>
+          <Badge variant="success">{status}</Badge>
+        </Td>
+      </Tr>
+      <Drawer
+        isOpen={isOpen}
+        onClose={onClose}
+        placement="right"
+        closeButton={true}
+        title={drawerTitle}
+      >
+        <MemberDrawer onClose={onClose} />
+      </Drawer>
+    </>
   );
 };
 

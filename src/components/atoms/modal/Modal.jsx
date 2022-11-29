@@ -11,7 +11,7 @@ const Modal = ({ isOpen, onClose, title, closeButton, children }) => {
     <ChakraModal isOpen={isOpen} onClose={onClose} size="md">
       <ModalOverlay />
       <ModalContent>
-        {title && <ModalHeader>Agrega un miembro al club</ModalHeader>}
+        {title && <ModalHeader>{title}</ModalHeader>}
         {closeButton && <ModalCloseButton />}
         {children}
       </ModalContent>

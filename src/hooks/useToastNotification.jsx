@@ -7,7 +7,7 @@ import { useToast } from '@chakra-ui/react';
 const useToastNotification = () => {
   const toast = useToast();
 
-  const handleToast = (status, content) => {
+  const handleToast = (status, content, duration = 3000) => {
     const id = content.title.trim();
     if (!toast.isActive(id))
       toast({
@@ -16,7 +16,7 @@ const useToastNotification = () => {
         description: content.description,
         status,
         position: 'bottom-left',
-        duration: 3000,
+        duration,
         isClosable: true
       });
   };
@@ -45,10 +45,14 @@ const useToastNotification = () => {
      * @returns async response || False
      * handles an async request and notifies user of its status while its processing
      */
-    handleToast('info', {
-      title: loadMsg,
-      description: ''
-    });
+    handleToast(
+      'info',
+      {
+        title: loadMsg,
+        description: ''
+      },
+      null
+    );
     const res = await callBack;
     if (String(res.status)[0] === '2') {
       toast.close(loadMsg.trim());

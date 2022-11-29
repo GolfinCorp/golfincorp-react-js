@@ -39,6 +39,16 @@ const Button = defineStyleConfig({
         cursor: 'pointer'
       }
     },
+    danger: {
+      bg: 'red',
+      color: 'white',
+      _hover: {
+        bg: 'transparent',
+        color: 'red',
+        border: '1px solid',
+        borderColor: 'red'
+      }
+    },
     'menu-button': {
       h: '40px',
       maxW: '40px',

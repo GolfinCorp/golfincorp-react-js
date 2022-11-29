@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Text,
-  SimpleGrid,
-  GridItem,
-  Flex,
-  useToast
-} from '@chakra-ui/react';
+import { Box, Text, SimpleGrid, GridItem, Flex } from '@chakra-ui/react';
 import { getDays } from './utils/getDays';
+import useToastNotification from '@/hooks/useToastNotification';
 import Day from './Day';
+import WeekHeader from './WeekHeader';
+// Initial values declaration
 const date = new Date();
-
 const initialCalendarDates = getDays(date.getMonth(), date.getFullYear());
 const initialMonth = {
   num: date.getMonth(),
   txt: date.toLocaleString('default', { month: 'long' })
 };
 
-const days = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
-
 const Calendar = () => {
+  const { handleToast } = useToastNotification();
   // States and variables
   const [selected, setSelected] = useState(date);
-  const [daysInMonth, setDaysInMonth] = useState(initialCalendarDates);
-  const [month, setMonth] = useState(initialMonth);
-  const toast = useToast();
+  const daysInMonth = initialCalendarDates;
+  const month = initialMonth;
+  // const [daysInMonth, setDaysInMonth] = useState(initialCalendarDates);
+  // const [month, setMonth] = useState(initialMonth);
 
   // Event handlers
   const handleSelectDate = (day) => {
@@ -32,22 +27,16 @@ const Calendar = () => {
       day.getMonth() < date.getMonth() ||
       (day.getMonth() === date.getMonth() && day.getDate() < date.getDate())
     ) {
-      toast({
+      handleToast('error', {
         title: 'No disponible',
-        description: 'No puedes agendar en días anteriores',
-        status: 'error',
-        duration: 9000,
-        isClosable: true
+        description: 'No puedes agendar en días anteriores'
       });
       return;
     }
     if (day.getDay() === 0 || day.getDay() === 6) {
-      toast({
+      handleToast('error', {
         title: 'No disponible',
-        description: 'No se juega los finde :(',
-        status: 'error',
-        duration: 9000,
-        isClosable: true
+        description: 'No se juega los finde :('
       });
       return;
     }
@@ -68,15 +57,10 @@ const Calendar = () => {
           {month.txt}
         </Text>
       </Flex>
-      <SimpleGrid columns={7}></SimpleGrid>
+      <SimpleGrid columns={7}>
+        <WeekHeader />
+      </SimpleGrid>
       <SimpleGrid columns={7} gap="2">
-        {days.map((day, index) => (
-          <GridItem key={`${index}${day}`}>
-            <Text fontSize="sm" textAlign="center" color="brand.100">
-              {day}
-            </Text>
-          </GridItem>
-        ))}
         {daysInMonth?.map((day, index) => {
           return (
             <GridItem
