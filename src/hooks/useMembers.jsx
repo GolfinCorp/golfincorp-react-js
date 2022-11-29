@@ -13,10 +13,9 @@ const useMembers = () => {
       title: 'Exito!',
       description: 'Los usuarios se han cargado correctamente'
     };
-    const request = get('/members');
     try {
       const membersResponse = members
-        ? await request
+        ? await get('/members')
         : await handleAsyncToast(
             get('/members'),
             successMsg,

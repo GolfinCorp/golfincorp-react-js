@@ -36,11 +36,14 @@ const Members = () => {
     handleSearch();
   };
 
+  const fetchMembers = async () => {
+    await getMembers();
+  };
   // Secondary Effects
   useEffect(() => {
     if (members) return;
-    getMembers();
-  }, [members]);
+    fetchMembers();
+  }, []);
 
   return (
     <>

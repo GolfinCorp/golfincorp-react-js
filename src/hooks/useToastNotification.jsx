@@ -8,7 +8,7 @@ const useToastNotification = () => {
   const toast = useToast();
 
   const handleToast = (status, content) => {
-    const id = content.title;
+    const id = content.title.trim();
     if (!toast.isActive(id))
       toast({
         id,
@@ -29,6 +29,13 @@ const useToastNotification = () => {
     });
   };
 
+  // const golfMoji = () => {
+  //   const successMojis = ['🥳', '✨', '🎊', '😎'];
+  //   const randomMoji =
+  //     successMojis[Math.floor(Math.random() * successMojis.length)];
+  //   return randomMoji;
+  // };
+
   const handleAsyncToast = async (callBack, msg, loadMsg) => {
     /**
      * @params
@@ -43,14 +50,15 @@ const useToastNotification = () => {
       description: ''
     });
     const res = await callBack;
-    console.log(res);
     if (String(res.status)[0] === '2') {
+      toast.close(loadMsg.trim());
       handleToast('success', {
         title: msg.title,
         description: msg.description
       });
       return res;
     } else {
+      toast.close(loadMsg.trim());
       handleToast('error', {
         title: `Ha ocurrido un problema ${res.status}`,
         description: `${res.data.error}`

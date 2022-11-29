@@ -3,12 +3,16 @@ import jwt from 'jwt-decode';
 import axiosInstance from '@/services/axios';
 import { AuthContext } from '@/contexts';
 import { setLocalStorage, deleteLocalStorage } from '@/helpers/localStorage';
-
+import useToastNotification from './useToastNotification';
 const useAuth = () => {
   const { setAuthToken, setUser } = useContext(AuthContext);
-
+  const { handleAsyncToast } = useToastNotification();
   const login = async (credentials) => {
-    const response = await axiosInstance.post('/users/login/', credentials);
+    const response = await handleAsyncToast(
+      axiosInstance.post('/users/login/', credentials),
+      { title: 'Bienvenido', description: `${credentials.email}` },
+      'Iniciando sesión'
+    );
     const token = response.data.token;
     const user = jwt(token);
 

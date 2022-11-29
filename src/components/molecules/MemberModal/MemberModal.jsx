@@ -1,18 +1,15 @@
 import React from 'react';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
   Box,
   Text,
-  ModalFooter,
   Input,
-  Button
+  Button,
+  ModalFooter,
+  Flex
 } from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
+import { Modal } from '@/components/atoms';
 import { useForm } from 'react-hook-form';
 
 const MemberModal = ({ isOpen, onClose }) => {
@@ -26,34 +23,36 @@ const MemberModal = ({ isOpen, onClose }) => {
     }
   };
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Agrega un miembro al club</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <form onSubmit={handleSubmit(submitMember)}>
-            <Box my="5">
-              <Text>Nombre</Text>
-              <Input placeholder="Pedro" {...register('firstName')} />
-            </Box>
-            <Box my="5">
-              <Text>Apellido</Text>
-              <Input placeholder="Perez" {...register('lastname')} />
-            </Box>
-            <Box my="5">
-              <Text>Email</Text>
-              <Input placeholder="golfer@golfinc.com" {...register('email')} />
-            </Box>
-            <Box my="5">
-              <Text>Membresía</Text>
-              <Input placeholder="55522" {...register('membership')} />
-            </Box>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={'Agrega un miembro al club'}
+      closeButton
+    >
+      <ModalBody>
+        <form onSubmit={handleSubmit(submitMember)}>
+          <Box my="5">
+            <Text>Nombre</Text>
+            <Input placeholder="Pedro" {...register('firstName')} />
+          </Box>
+          <Box my="5">
+            <Text>Apellido</Text>
+            <Input placeholder="Perez" {...register('lastname')} />
+          </Box>
+          <Box my="5">
+            <Text>Email</Text>
+            <Input placeholder="golfer@golfinc.com" {...register('email')} />
+          </Box>
+          <Box my="5">
+            <Text>Membresía</Text>
+            <Input placeholder="55522" {...register('membership')} />
+          </Box>
+          <Flex justifyContent="end">
             <Button type="submit">Agregar</Button>
-          </form>
-        </ModalBody>
-        <ModalFooter></ModalFooter>
-      </ModalContent>
+          </Flex>
+        </form>
+      </ModalBody>
+      <ModalFooter />
     </Modal>
   );
 };
