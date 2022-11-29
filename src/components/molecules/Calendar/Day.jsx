@@ -2,7 +2,6 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 const Day = ({ selected, day }) => {
   const date = new Date();
-  console.log(date.getMonth(), day.getMonth());
   const prevDay =
     day.getMonth() < date.getMonth() ||
     (day.getMonth() === date.getMonth() && day.getDate() < date.getDate());

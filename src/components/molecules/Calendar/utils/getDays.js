@@ -48,7 +48,6 @@ export const getDays = (month, year) => {
    *    [year:int] with current year
    * @returns an array with all days in current month
    */
-  console.log(month);
   const date = new Date(year, month, 1);
   let days = [];
   while (date.getMonth() === month) {

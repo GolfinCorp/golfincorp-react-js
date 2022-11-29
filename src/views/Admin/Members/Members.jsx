@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Flex, Box, useDisclosure } from '@chakra-ui/react';
 import useMembers from '@/hooks/useMembers';
-import Table from '@/components/organisms/Table';
+import { Table } from '@/components/organisms';
 import { Searchbar } from '@/components';
 import { DateFlex, MemberModal } from '@/components/molecules';
 import MemberList from './components/MemberList';
@@ -27,16 +27,17 @@ const Members = () => {
     setSearchMembers(searchedResults);
   };
 
+  // Resets search term
   const reset = () => {
     setSearchTerm('');
   };
 
   const handleSearchTerm = (e) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(e.target.value);
     handleSearch();
   };
 
-  // Efectos secundarios
+  // Secondary Effects
   useEffect(() => {
     (async () => {
       const membersResponse = await getMembers();
