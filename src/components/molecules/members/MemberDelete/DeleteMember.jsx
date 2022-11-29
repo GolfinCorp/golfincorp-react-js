@@ -5,7 +5,6 @@ import { useMembers } from '@/hooks';
 const DeleteMember = ({ onClose, id }) => {
   const { deleteMember } = useMembers();
   const [isDeleting, setIsDeleting] = useState(false);
-  console.log(id);
   const handleDelete = async () => {
     const deleteResponse = await deleteMember(id);
     if (!deleteResponse) return;

@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { MembersContext } from '@/contexts';
-import useAxiosPrivate from './useAxiosPrivate';
-import useToastNotification from './useToastNotification';
+import { useAxiosPrivate, useToastNotification } from '@/hooks';
 const useMembers = () => {
   const { members, setMembers } = useContext(MembersContext);
   const { get, post, patch, axiosDelete } = useAxiosPrivate();

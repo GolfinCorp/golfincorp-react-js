@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalBody, ModalFooter } from '@chakra-ui/react';
-import useMembers from '@/hooks/useMembers';
+import { useMembers } from '@/hooks';
 import { Modal } from '@/components/atoms';
 import Form from '../Form/Form';
 const MemberModal = ({ isOpen, onClose }) => {

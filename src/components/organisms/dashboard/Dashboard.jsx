@@ -22,7 +22,7 @@ import {
 import Sidebar from './Sidebar';
 import Logo from '@/components/atoms/icons/Logo';
 import { Outlet } from 'react-router-dom';
-import useAuth from '@/hooks/useAuth';
+import { useAuth } from '@/hooks';
 
 const Dashboard = () => {
   const { logout } = useAuth();

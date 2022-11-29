@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import axiosInstance from '@/services/axios';
-import useAuth from '@/hooks/useAuth';
+import { useAuth } from '@/hooks';
 
 const useAxiosPrivate = () => {
   const { authToken } = useAuth();

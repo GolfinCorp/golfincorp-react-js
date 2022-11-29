@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Flex, Box, useDisclosure } from '@chakra-ui/react';
-import useMembers from '@/hooks/useMembers';
+import { useMembers } from '@/hooks';
 import { Table } from '@/components/organisms';
 import { Searchbar } from '@/components';
 import { DateFlex, MemberModal } from '@/components/molecules';

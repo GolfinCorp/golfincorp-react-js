@@ -3,7 +3,7 @@ import jwt from 'jwt-decode';
 import axiosInstance from '@/services/axios';
 import { AuthContext } from '@/contexts';
 import { setLocalStorage, deleteLocalStorage } from '@/helpers/localStorage';
-import useToastNotification from './useToastNotification';
+import { useToastNotification } from '@/hooks';
 const useAuth = () => {
   const { setAuthToken, setUser } = useContext(AuthContext);
   const { handleAsyncToast } = useToastNotification();
