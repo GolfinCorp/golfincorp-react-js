@@ -36,7 +36,12 @@ const useAxiosPrivate = () => {
     return response;
   }, []);
 
-  return { axiosPrivate: axiosInstance, get, post, patch };
+  const axiosDelete = useCallback(async (...args) => {
+    const response = await axiosInstance.delete(...args);
+    return response;
+  }, []);
+
+  return { axiosPrivate: axiosInstance, get, post, patch, axiosDelete };
 };
 
 export default useAxiosPrivate;
