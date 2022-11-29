@@ -1,10 +1,17 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
+
 const Day = ({ selected, day }) => {
   const date = new Date();
-  const prevDay =
-    day.getMonth() < date.getMonth() ||
-    (day.getMonth() === date.getMonth() && day.getDate() < date.getDate());
+  const prevDay = day < date;
+  const isWeekend = day.getDay() === 6 || day.getDay() === 0;
+
+  const dayColor = (weekend, select) => {
+    if (weekend) return 'brand.100';
+    if (select) return 'brand.white';
+    return 'brand.dark';
+  };
+
   return (
     <>
       {prevDay ? (
@@ -20,22 +27,8 @@ const Day = ({ selected, day }) => {
         <Box
           borderRadius="8px"
           p="1"
-          bgColor={
-            selected &&
-            day.getDate() === selected.getDate() &&
-            day.getMonth() === selected.getMonth()
-              ? 'brand.primary'
-              : 'transparent'
-          }
-          color={
-            day.getDay() === 6 || day.getDay() === 0
-              ? 'brand.100'
-              : selected &&
-                day.getDate() === selected.getDate() &&
-                day.getMonth() === selected.getMonth()
-              ? 'brand.white'
-              : 'brand.dark'
-          }
+          bgColor={day === selected ? 'brand.primary' : 'transparent'}
+          color={dayColor(isWeekend, selected === day)}
         >
           {day.getDate()}
         </Box>

@@ -1,3 +1,11 @@
+const createClamp = (min, max) => {
+  return (num) => {
+    if (num < min) return max;
+    if (num > max) return min;
+    return num;
+  };
+};
+
 const fillMonth = (days, prevMonth, nextMonth) => {
   /**
    * @params array of days
@@ -5,35 +13,27 @@ const fillMonth = (days, prevMonth, nextMonth) => {
    */
   const firstDay = days[0].getDay();
   const finalDay = days[days.length - 1].getDay();
+
   prevMonth = prevMonth.reverse();
-  if (firstDay === 0) {
-    let daysToIndex = [];
-    for (let i = 0; i < 6; i++) {
-      daysToIndex.push(prevMonth[i]);
-    }
-    days = [...daysToIndex, ...days];
-  } else {
-    let daysToIndex = [];
-    for (let i = 0; i < firstDay - 1; i++) {
-      daysToIndex.push(prevMonth[i]);
-    }
-    days = [...daysToIndex, ...days];
+
+  const startDates = [];
+  const clamp = createClamp(0, 6);
+  for (let i = clamp(firstDay - 1) - 1; i >= 0; i--) {
+    startDates.push(prevMonth[i]);
   }
-  if (finalDay === 0) {
-    return days;
-  } else {
-    let daysToIndex = [];
-    for (let i = 0; i < 7 - finalDay; i++) {
-      daysToIndex.push(nextMonth[i]);
-    }
-    days = [...days, ...daysToIndex];
+  days = [...startDates, ...days];
+
+  const endDates = [];
+  for (let i = 0; i < clamp(7 - finalDay); i++) {
+    endDates.push(nextMonth[i]);
   }
+  days = [...days, ...endDates];
   return days;
 };
 
-const getDatesOfMonth = (year, month, days) => {
+const getDatesOfMonth = (date) => {
   const daysOfMonth = [];
-  const date = new Date(year, month, days);
+  const month = date.getMonth();
   while (date.getMonth() === month) {
     daysOfMonth.push(new Date(date));
     date.setDate(date.getDate() + 1);
@@ -41,22 +41,33 @@ const getDatesOfMonth = (year, month, days) => {
   return daysOfMonth;
 };
 
-export const getDays = (month, year) => {
+const addMonths = (date, numOfMonths) => {
+  const dateCopy = new Date(date.getTime());
+
+  dateCopy.setMonth(dateCopy.getMonth() + numOfMonths);
+
+  return dateCopy;
+};
+
+export const getDays = (year, month) => {
   /**
    * @params
-   *    [month:int] with current month
    *    [year:int] with current year
+   *    [month:int] with current month
    * @returns an array with all days in current month
    */
   const date = new Date(year, month, 1);
+  const prevMonth = new Date(addMonths(date, -1));
+  const nextMonth = new Date(addMonths(date, 1));
   let days = [];
   while (date.getMonth() === month) {
     days.push(new Date(date));
     date.setDate(date.getDate() + 1);
   }
-  const prevMonth = getDatesOfMonth(year, month - 1, 1);
-  const nextMonth = getDatesOfMonth(year, month + 1, 1);
+  const prevDates = getDatesOfMonth(prevMonth);
+  const nextDates = getDatesOfMonth(nextMonth);
 
-  days = fillMonth(days, prevMonth, nextMonth);
+  days = fillMonth(days, prevDates, nextDates);
+
   return days;
 };

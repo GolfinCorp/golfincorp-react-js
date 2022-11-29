@@ -30,7 +30,8 @@ function HomeHeader() {
   ];
 
   // * Event handler
-  const handleClick = () => {
+  const redirect = (route) => {
+    if (route) return navigate(route);
     toast({
       title: 'En construcción',
       status: 'warning',
@@ -91,7 +92,7 @@ function HomeHeader() {
             {navItems.map((item) => (
               <NavItems
                 content={item}
-                action={handleClick}
+                action={() => redirect(item.route)}
                 key={`${Math.random() * 10 + 1}${item.route}`}
               />
             ))}
