@@ -49,6 +49,15 @@ const Button = defineStyleConfig({
         borderColor: 'red'
       }
     },
+    'danger-outlined': {
+      bg: 'transparent',
+      color: 'red',
+      border: '1px solid',
+      borderColor: 'red',
+      _hover: {
+        backgroundColor: 'brand.dark'
+      }
+    },
     'menu-button': {
       h: '40px',
       maxW: '40px',

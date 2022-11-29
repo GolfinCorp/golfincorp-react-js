@@ -24,7 +24,7 @@ const MembersTr = ({ member }) => {
         closeButton={true}
         title={drawerTitle}
       >
-        <MemberDrawer onClose={onClose} />
+        <MemberDrawer onClose={onClose} id={member._id} />
       </Drawer>
     </>
   );
