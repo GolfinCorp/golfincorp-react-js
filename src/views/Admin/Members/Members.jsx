@@ -11,11 +11,10 @@ const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 
 const Members = () => {
   // variables, estados y hooks
-  const [members, setMembers] = useState(null);
   const [searchMembers, setSearchMembers] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { getMembers } = useMembers();
+  const { getMembers, members } = useMembers();
 
   // Event handlers
   const handleSearch = () => {
@@ -39,11 +38,9 @@ const Members = () => {
 
   // Secondary Effects
   useEffect(() => {
-    (async () => {
-      const membersResponse = await getMembers();
-      setMembers(membersResponse);
-    })();
-  }, []);
+    if (members) return;
+    getMembers();
+  }, [members]);
 
   return (
     <>

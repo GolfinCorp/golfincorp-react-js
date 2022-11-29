@@ -18,9 +18,12 @@ import { useForm } from 'react-hook-form';
 const MemberModal = ({ isOpen, onClose }) => {
   const { register, handleSubmit } = useForm();
   const { createMember } = useMembers();
-  const submitMember = (member) => {
+  const submitMember = async (member) => {
     event.preventDefault();
-    createMember(member);
+    const createRes = await createMember(member);
+    if (createRes) {
+      onClose();
+    }
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
@@ -37,6 +40,10 @@ const MemberModal = ({ isOpen, onClose }) => {
             <Box my="5">
               <Text>Apellido</Text>
               <Input placeholder="Perez" {...register('lastname')} />
+            </Box>
+            <Box my="5">
+              <Text>Email</Text>
+              <Input placeholder="golfer@golfinc.com" {...register('email')} />
             </Box>
             <Box my="5">
               <Text>Membresía</Text>

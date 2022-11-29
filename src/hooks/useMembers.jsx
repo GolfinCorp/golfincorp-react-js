@@ -5,38 +5,53 @@ import useToastNotification from './useToastNotification';
 const useMembers = () => {
   const { members, setMembers } = useContext(MembersContext);
   const { get, post } = useAxiosPrivate();
-  const { handleAsyncToast, handleToast } = useToastNotification();
-  const serverError = {
-    title: 'Ha ocurrido un error!',
-    description: 'Tuvimos problemas consultando al servidor'
-  };
+  const { handleAsyncToast, handleToast, handleErrorToast } =
+    useToastNotification();
+
   const getMembers = async () => {
-    if (members) return members;
     const successMsg = {
       title: 'Exito!',
       description: 'Los usuarios se han cargado correctamente'
     };
+    const request = get('/members');
     try {
-      const membersResponse = await handleAsyncToast(
-        get('/members'),
-        successMsg,
-        'Cargando Miembros'
-      );
+      const membersResponse = members
+        ? await request
+        : await handleAsyncToast(
+            get('/members'),
+            successMsg,
+            'Cargando Miembros'
+          );
       if (!membersResponse) return;
       setMembers(membersResponse.data.members);
       return membersResponse.data.members;
     } catch (error) {
-      console.log(error);
-      handleToast('error', {
-        title: `Ha ocurrido un error ${error.name}`,
-        description: `${error.message}`
-      });
+      handleErrorToast(error);
     }
   };
 
   const createMember = async (member) => {
     if (!member) {
-      handleToast();
+      handleToast('error', { title: 'Member data is necesary' });
+    }
+    try {
+      const createResponse = await handleAsyncToast(
+        post('members', { ...member }),
+        {
+          title: 'Exito',
+          description: `${member.firstName} agregado como miembro`
+        },
+        'Creando miembro'
+      );
+      if (!createResponse) {
+        return false;
+      } else {
+        getMembers();
+        return true;
+      }
+    } catch (error) {
+      handleErrorToast(error);
+      return false;
     }
   };
   return {

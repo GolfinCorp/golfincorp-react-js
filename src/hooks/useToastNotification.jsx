@@ -1,4 +1,9 @@
 import { useToast } from '@chakra-ui/react';
+/**
+ *
+ * @returns handleToast, handleErrorToast, handleAsyncToast
+ * meant to handle dinamyc feedback for the user
+ */
 const useToastNotification = () => {
   const toast = useToast();
 
@@ -16,14 +21,30 @@ const useToastNotification = () => {
       });
   };
 
+  // Used to handle server errors
+  const handleErrorToast = (error) => {
+    handleToast('error', {
+      title: `Ha ocurrido un error ${error.response.status}`,
+      description: `${error.response.data.error || error.message}`
+    });
+  };
+
   const handleAsyncToast = async (callBack, msg, loadMsg) => {
-    // ? Could be optimized
+    /**
+     * @params
+     * - callBack: API consuming function called
+     * - msg: Success message
+     * - loadMsg: message while loading
+     * @returns async response || False
+     * handles an async request and notifies user of its status while its processing
+     */
     handleToast('info', {
       title: loadMsg,
       description: ''
     });
     const res = await callBack;
-    if (res.status === 200) {
+    console.log(res);
+    if (String(res.status)[0] === '2') {
       handleToast('success', {
         title: msg.title,
         description: msg.description
@@ -32,13 +53,13 @@ const useToastNotification = () => {
     } else {
       handleToast('error', {
         title: `Ha ocurrido un problema ${res.status}`,
-        description: `${res.data}`
+        description: `${res.data.error}`
       });
       return false;
     }
   };
 
-  return { handleToast, handleAsyncToast };
+  return { handleToast, handleErrorToast, handleAsyncToast };
 };
 
 export default useToastNotification;
