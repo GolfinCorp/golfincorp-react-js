@@ -4,7 +4,7 @@ import useAxiosPrivate from './useAxiosPrivate';
 import useToastNotification from './useToastNotification';
 const useMembers = () => {
   const { members, setMembers } = useContext(MembersContext);
-  const { get, post } = useAxiosPrivate();
+  const { get, post, patch, axiosDelete } = useAxiosPrivate();
   const { handleAsyncToast, handleToast, handleErrorToast } =
     useToastNotification();
 
@@ -42,9 +42,57 @@ const useMembers = () => {
         },
         'Creando miembro'
       );
-      if (!createResponse) {
-        return false;
-      } else {
+      if (!createResponse) return false;
+      else {
+        getMembers();
+        return true;
+      }
+    } catch (error) {
+      handleErrorToast(error);
+      return false;
+    }
+  };
+
+  const updateMember = async (member, id) => {
+    if (!member || !id) {
+      handleToast('error', { title: 'Member data is necesary' });
+    }
+    try {
+      const updateResponse = await handleAsyncToast(
+        patch(`members/${id}`, {
+          ...member
+        }),
+        {
+          title: 'Exito',
+          description: `Miembro modificado`
+        },
+        'Modificando Miembro'
+      );
+      if (!updateResponse) return false;
+      else {
+        getMembers();
+        return true;
+      }
+    } catch (error) {
+      handleErrorToast(error);
+      return false;
+    }
+  };
+  const deleteMember = async (id) => {
+    if (!id) {
+      handleToast('error', { title: 'Member data is necesary' });
+    }
+    try {
+      const updateResponse = await handleAsyncToast(
+        axiosDelete(`members/${id}`),
+        {
+          title: 'Exito',
+          description: `Miembro Eliminado`
+        },
+        'Eliminando miembro'
+      );
+      if (!updateResponse) return false;
+      else {
         getMembers();
         return true;
       }
@@ -56,6 +104,8 @@ const useMembers = () => {
   return {
     getMembers,
     createMember,
+    updateMember,
+    deleteMember,
     ...useContext(MembersContext)
   };
 };
