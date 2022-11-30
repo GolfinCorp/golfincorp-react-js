@@ -8,6 +8,10 @@ const useMembers = () => {
     useToastNotification();
 
   const getMembers = async () => {
+    /**
+     * * Handles fetching club members from backend & sets context
+     * @return boolean { true: success || false: failure }
+     */
     const successMsg = {
       title: 'Exito!',
       description: 'Los usuarios se han cargado correctamente'
@@ -29,6 +33,13 @@ const useMembers = () => {
   };
 
   const createMember = async (member) => {
+    /**
+     * * Handles new member creation & calls getMembers() onSuccess
+     * @return boolean { true: success || false: failure }
+     * @params member{
+     *  firstName, lastname, membership, email
+     * }
+     */
     if (!member) {
       handleToast('error', { title: 'Member data is necesary' });
     }
@@ -53,6 +64,16 @@ const useMembers = () => {
   };
 
   const updateMember = async (member, id) => {
+    /**
+     * * Handles patching member and updating members context
+     * @return boolean { true: success || false: failure }
+     *
+     * @params member || id
+     * member = {
+     *  firstName, lastname, membership, email
+     * )
+     * id: int
+     */
     if (!member || !id) {
       handleToast('error', { title: 'Member data is necesary' });
     }
@@ -77,7 +98,14 @@ const useMembers = () => {
       return false;
     }
   };
+
   const deleteMember = async (id) => {
+    /**
+     * * Handles deleting a member and updating members context
+     * @return boolean { true: success || false: failure }
+     *
+     * @params id: int
+     */
     if (!id) {
       handleToast('error', { title: 'Member data is necesary' });
     }
@@ -100,6 +128,7 @@ const useMembers = () => {
       return false;
     }
   };
+
   return {
     getMembers,
     createMember,
