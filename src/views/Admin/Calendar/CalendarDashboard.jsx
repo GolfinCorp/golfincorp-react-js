@@ -3,7 +3,21 @@ import { Searchbar, EventCard } from '@/components/atoms';
 import { HourSchedule } from '@/components/organisms';
 import { Divider, SimpleGrid, GridItem } from '@chakra-ui/react';
 import { Calendar } from '@/components/molecules';
+import { useGames, useCalendar } from '@/hooks';
+import { useEffect } from 'react';
 const CalendarDashboard = () => {
+  const { getGames, games, getGamesByDate } = useGames();
+  const { selectedDate } = useCalendar();
+  const fetchGames = async () => {
+    await getGames();
+  };
+  useEffect(() => {
+    if (!games) {
+      fetchGames();
+    } else {
+      getGamesByDate(selectedDate);
+    }
+  }, [games]);
   return (
     <>
       <DateFlex>

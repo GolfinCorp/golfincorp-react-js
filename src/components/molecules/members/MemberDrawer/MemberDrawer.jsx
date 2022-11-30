@@ -1,27 +1,29 @@
-import {
-  DrawerBody,
-  DrawerFooter,
-  Button,
-  Box,
-  Divider
-} from '@chakra-ui/react';
+import { DrawerBody, DrawerFooter, Box, Divider } from '@chakra-ui/react';
+import { useMembers } from '@/hooks';
 import Form from '../Form/Form';
 import UpdatePassword from '../UpdatePassword';
-const MemberForm = ({ onClose }) => {
+import DeleteMember from '../MemberDelete/DeleteMember';
+const MemberForm = ({ onClose, id }) => {
+  const { updateMember } = useMembers();
+  // Event handlers
+  const handleSubmit = async (member) => {
+    event.preventDefault();
+    const updateResponse = await updateMember(member, id);
+    if (!updateResponse) return;
+    onClose();
+  };
+
   return (
     <>
       <DrawerBody>
-        <Form btnContent="Actualizar" />
+        <Form btnContent="Actualizar" submitMember={handleSubmit} />
         <Divider my="5" />
         <Box>
           <UpdatePassword />
         </Box>
       </DrawerBody>
-
       <DrawerFooter>
-        <Button variant="danger" mr={3} onClick={onClose}>
-          Eliminar
-        </Button>
+        <DeleteMember onClose={onClose} id={id} />
       </DrawerFooter>
     </>
   );
