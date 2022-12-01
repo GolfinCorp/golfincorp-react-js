@@ -1,21 +1,19 @@
-import DateFlex from '@/components/molecules/Date';
-import { Searchbar, EventCard } from '@/components/atoms';
-import { HourSchedule } from '@/components/organisms';
-import { Divider, SimpleGrid, GridItem } from '@chakra-ui/react';
-import { Calendar } from '@/components/molecules';
-import { useGames, useCalendar } from '@/hooks';
 import { useEffect } from 'react';
+import { Divider, SimpleGrid, GridItem } from '@chakra-ui/react';
+import { useGames } from '@/hooks';
+import { Searchbar } from '@/components/atoms';
+import { HourSchedule } from '@/components/organisms';
+import { Calendar, DateFlex, Events } from '@/components/molecules';
+
 const CalendarDashboard = () => {
-  const { getGames, games, getGamesByDate } = useGames();
-  const { selectedDate } = useCalendar();
+  const { games, getGamesByDate } = useGames();
   const fetchGames = async () => {
-    await getGames();
+    await getGamesByDate();
   };
   useEffect(() => {
+    // Initial state load
     if (!games) {
       fetchGames();
-    } else {
-      getGamesByDate(selectedDate);
     }
   }, [games]);
   return (
@@ -28,7 +26,7 @@ const CalendarDashboard = () => {
       <SimpleGrid my="5" columns={12} gap={1}>
         <GridItem colSpan={{ base: 12, md: 5, lg: 4, xl: 3 }}>
           <Calendar />
-          <EventCard />
+          <Events />
         </GridItem>
         <GridItem colSpan={{ base: 12, md: 7, lg: 8, xl: 9 }}>
           <HourSchedule />

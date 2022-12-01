@@ -1,38 +1,54 @@
 import { useContext } from 'react';
 import { GamesContext } from '@/contexts';
-import { useAxiosPrivate, useToastNotification } from '@/hooks';
+import { useAxiosPrivate, useToastNotification, useCalendar } from '@/hooks';
+
+const gamesUrl = (endpoint) => {
+  return endpoint ? `games/${endpoint}` : 'games';
+};
 const useGames = () => {
-  const { setGames, games, setCurrentGames } = useContext(GamesContext);
+  const { setGames, games } = useContext(GamesContext);
+  const { selectedDate } = useCalendar();
   const { handleAsyncToast, handleErrorToast } = useToastNotification();
   const { get } = useAxiosPrivate();
-  const getGames = async () => {
+
+  const getGamesByDate = async (date = selectedDate) => {
+    if (games) {
+      // Check if games exist and if games of 'selected' date has already been fetched
+      const fetchedDate = games.find(
+        (gameDay) => gameDay.id === date.getTime()
+      );
+      if (fetchedDate) return;
+    }
     try {
       const gamesRes = await handleAsyncToast(
-        get('games'),
+        get(gamesUrl('filter'), {
+          params: {
+            startDate: date,
+            endDate: new Date(date - 1)
+          }
+        }),
         {
           title: 'Exito',
           description: 'Juegos cargados'
         },
         'Cargando Juegos'
       );
-      if (!gamesRes) return;
 
-      setGames(gamesRes.data);
+      if (!gamesRes) return;
+      // Generate game object
+      const newGameDate = {
+        id: date.getTime(), // Will be used to find and filter gameDates
+        games: gamesRes.data
+      };
+      setGames(games ? [...games, newGameDate] : [newGameDate]);
       return true;
     } catch (error) {
       handleErrorToast(error);
       return false;
     }
   };
-  const getGamesByDate = (date) => {
-    const reducedGames = games.map((game) => {
-      const newDate = new Date(game.date);
-      return { ...game, date: newDate };
-    });
-    const filtered = reducedGames.filter((game) => game.date === date);
-    setCurrentGames(filtered || null);
-  };
-  return { getGames, getGamesByDate, ...useContext(GamesContext) };
+
+  return { getGamesByDate, ...useContext(GamesContext) };
 };
 
 export default useGames;

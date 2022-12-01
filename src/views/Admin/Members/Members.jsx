@@ -5,7 +5,6 @@ import { Table } from '@/components/organisms';
 import { Searchbar } from '@/components';
 import { DateFlex, MemberModal } from '@/components/molecules';
 import MemberList from './components/MemberList';
-
 // Constante
 const TABLE_HEADERS = ['Nombre', 'Apellido', 'Membresía', 'Estado'];
 

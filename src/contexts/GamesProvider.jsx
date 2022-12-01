@@ -7,10 +7,10 @@ const GamesProvider = ({ children }) => {
   const [games, setGames] = useState(null);
 
   // Games matching the selectedDate
-  const [currentGames, setCurrentGames] = useState([]);
+  const [history, setHistory] = useState([]);
 
   //
-  const data = { games, setGames, currentGames, setCurrentGames };
+  const data = { games, setGames, history, setHistory };
 
   return <GamesContext.Provider value={data}>{children}</GamesContext.Provider>;
 };

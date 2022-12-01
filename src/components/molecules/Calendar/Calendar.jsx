@@ -1,24 +1,17 @@
 import { useState, useEffect } from 'react';
-import {
-  Box,
-  Text,
-  SimpleGrid,
-  GridItem,
-  Flex,
-  IconButton
-} from '@chakra-ui/react';
+import { Box, Text, SimpleGrid, GridItem, Flex } from '@chakra-ui/react';
 import { getDays } from './utils/getDays';
-import useToastNotification from '@/hooks/useToastNotification';
+import { useToastNotification, useCalendar, useGames } from '@/hooks';
 import Day from './Day';
 import WeekHeader from './WeekHeader';
-
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 // Initial values declaration
-const currentDate = new Date();
+
+const currentDate = new Date(new Date().setHours(0, 0, 0, 0));
 const initialCalendarDates = getDays(
   currentDate.getFullYear(),
   currentDate.getMonth()
 );
-
 const errors = {
   pastDay: (toastManager) => {
     toastManager('error', {
@@ -35,18 +28,21 @@ const errors = {
 };
 
 const Calendar = () => {
-  const { handleToast } = useToastNotification();
   // States and variables
-  const [selected, setSelected] = useState(currentDate);
+  const { handleToast } = useToastNotification();
+  const { getGamesByDate } = useGames();
+  const { selectedDate, setNewSelected } = useCalendar();
   const [daysInMonth, setDaysInMonth] = useState(initialCalendarDates);
   const [date, setDate] = useState(currentDate);
 
   // Event handlers
   const handleSelectDate = (day) => {
     const isWeekend = day.getDay() === 0 || day.getDay() === 6;
-    if (day < currentDate) return errors.pastDay(handleToast);
+    const today = new Date(new Date().setHours(0, 0, 0, 0));
+    if (day < today) return errors.pastDay(handleToast);
     if (isWeekend) return errors.weekend(handleToast);
-    setSelected(day);
+    setNewSelected(day);
+    getGamesByDate(day);
   };
 
   const changeMonth = (differential) => {
@@ -69,11 +65,15 @@ const Calendar = () => {
       borderRadius="10px"
     >
       <Flex alignItems="center" justifyContent="center" gap={5} mb="3">
-        <IconButton onClick={() => changeMonth(-1)}></IconButton>
+        <Box onClick={() => changeMonth(-1)} cursor="pointer">
+          <MdChevronLeft />
+        </Box>
         <Text textAlign={'center'} fontSize="20px">
           {date.toLocaleString('default', { month: 'long' })}
         </Text>
-        <IconButton onClick={() => changeMonth(1)}></IconButton>
+        <Box onClick={() => changeMonth(1)} cursor="pointer">
+          <MdChevronRight />
+        </Box>
       </Flex>
       <SimpleGrid columns={7}>
         <WeekHeader />
@@ -90,7 +90,7 @@ const Calendar = () => {
                 handleSelectDate(day);
               }}
             >
-              <Day day={day} selected={selected} />
+              <Day day={day} selected={selectedDate} />
             </GridItem>
           );
         })}

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Text, Flex } from '@chakra-ui/react';
 import { MdAccessTime } from 'react-icons/md';
-
-const EventCard = () => {
+const EventCard = ({ game }) => {
   return (
     <Box
       p="3"
