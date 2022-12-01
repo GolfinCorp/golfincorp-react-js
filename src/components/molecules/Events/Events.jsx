@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Text, Divider } from '@chakra-ui/react';
 import { EventCard, EventSkeleton } from '@/components/atoms';
 import { useGames } from '@/hooks';
+import { getCurrentDate } from '@/helpers/getCurrentDate';
 const Events = () => {
   const { games } = useGames();
   const [todayGames, setTodayGames] = useState(null);
-  const today = new Date(new Date().setHours(0, 0, 0, 0));
+  const today = getCurrentDate();
   useEffect(() => {
     if (todayGames || !games) return;
     const filteredGames = games.find(

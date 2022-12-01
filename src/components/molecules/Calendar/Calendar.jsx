@@ -5,9 +5,10 @@ import { useToastNotification, useCalendar, useGames } from '@/hooks';
 import Day from './Day';
 import WeekHeader from './WeekHeader';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { getCurrentDate } from '@/helpers/getCurrentDate';
 // Initial values declaration
 
-const currentDate = new Date(new Date().setHours(0, 0, 0, 0));
+const currentDate = getCurrentDate();
 const initialCalendarDates = getDays(
   currentDate.getFullYear(),
   currentDate.getMonth()
@@ -38,7 +39,7 @@ const Calendar = () => {
   // Event handlers
   const handleSelectDate = (day) => {
     const isWeekend = day.getDay() === 0 || day.getDay() === 6;
-    const today = new Date(new Date().setHours(0, 0, 0, 0));
+    const today = getCurrentDate();
     if (day < today) return errors.pastDay(handleToast);
     if (isWeekend) return errors.weekend(handleToast);
     setNewSelected(day);

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
+import { getCurrentDate } from '@/helpers/getCurrentDate';
 
 const Day = ({ selected, day }) => {
   // Set hours is needed to include current day
-  const date = new Date(new Date().setHours(0, 0, 0, 0));
+  const date = getCurrentDate();
   const prevDay = day < date;
   const isWeekend = day.getDay() === 6 || day.getDay() === 0;
   const dayColor = (weekend, select) => {
